@@ -17,12 +17,14 @@ namespace Events
         [SerializeField] private GameObject[] pentagrams;
         [SerializeField] private float lightTimer = 3f;
         private bool pentagramActive = false;
+        private Animation _towelAnimation;
         
         public override void StartEvent()
         {
             base.StartEvent();
             Event = Data.Events.LightsOut;
             Item = Data.EventsToItemsMap[Event];
+            _towelAnimation = GetComponent<Animation>();
 
             StartCoroutine(InitializeEvent());
         }

@@ -12,6 +12,7 @@ namespace Player
         private StarterAssetsInputs _input;
         private bool _pickupAvailable = false;
         
+        
         // Event 07 Variables
         private bool _pentagramAvailable = false;
         [CanBeNull] private GameObject _lastPentagram;
@@ -35,11 +36,13 @@ namespace Player
             {
                 StartCoroutine(CleansePentagram());
                 _pentagramAvailable = false;
+                
             }
         }
 
         private IEnumerator CleansePentagram()
         {
+            GameObject.Find("ItemTowel").GetComponent<Animator>().SetTrigger("TowelCleaning");
             yield return new WaitForSeconds(2f);
             if(_lastPentagram != null)
                 Destroy(_lastPentagram);

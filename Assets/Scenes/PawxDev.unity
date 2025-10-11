@@ -644,6 +644,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4926025588815940, guid: 33aaecbb19e68b746b967ea22a0f3036, type: 3}
   m_PrefabInstance: {fileID: 55560783}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &56291296 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1862883056034361479, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
+  m_PrefabInstance: {fileID: 777975599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &56291301
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56291296}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7c434b05a8e5cc84cab2c4e99c7eccdc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &57291896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13655,6 +13682,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1862883056034361479, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2412869969678107712, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
       propertyPath: m_Name
       value: Player
@@ -13662,7 +13693,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1862883056034361479, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 56291301}
   m_SourcePrefab: {fileID: 100100000, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
 --- !u!1001 &787859907
 PrefabInstance:
