@@ -17,8 +17,6 @@ namespace GameManager
                 Destroy(instance.gameObject);
             }
             instance = this;
-            
-            
         }
 
         private void Start()
@@ -44,6 +42,11 @@ namespace GameManager
         {
             _activeEvent = GetEventFromEnum(eventToStart);
             _activeEvent.StartEvent();
+        }
+
+        public void StopCurrentEvent()
+        {
+            _activeEvent.StopEvent();
         }
 
         public Data.Events GetActiveEvent() => _activeEvent.GetEvent();

@@ -9,7 +9,8 @@ namespace Events
     /// 2) Activate Pentagrams +
     /// 3) Turn lights back on after few seconds +
     /// 4) Pickup Towel +
-    /// 5) Cleanse Pentagrams 
+    /// 5) Cleanse Pentagrams +
+    /// 6) Stop Event
     /// </summary>
     public class Event_07_LightsOut : EventBase
     {

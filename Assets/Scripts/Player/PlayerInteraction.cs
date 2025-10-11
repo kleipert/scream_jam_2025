@@ -16,6 +16,7 @@ namespace Player
         // Event 07 Variables
         private bool _pentagramAvailable = false;
         [CanBeNull] private GameObject _lastPentagram;
+        private uint pentagramsCnt = 5;
 
         private void Start()
         {
@@ -44,9 +45,13 @@ namespace Player
         {
             GameObject.Find("ItemTowel").GetComponent<Animator>().SetTrigger("TowelCleaning");
             yield return new WaitForSeconds(2f);
-            if(_lastPentagram != null)
+            if (_lastPentagram != null)
+            {
                 Destroy(_lastPentagram);
-            
+                pentagramsCnt--;
+                if(pentagramsCnt == 0)
+                    EventController.instance.StopCurrentEvent();
+            }
         }
 
         private void OnTriggerEnter(Collider other)
