@@ -1,4 +1,6 @@
+using System.Collections;
 using GameManager;
+using JetBrains.Annotations;
 using StarterAssets;
 using UnityEngine;
 
@@ -9,6 +11,10 @@ namespace Player
         [SerializeField] private GameObject[] playerItems;
         private StarterAssetsInputs _input;
         private bool _pickupAvailable = false;
+        
+        // Event 07 Variables
+        private bool _pentagramAvailable = false;
+        [CanBeNull] private GameObject _lastPentagram;
 
         private void Start()
         {
@@ -17,24 +23,58 @@ namespace Player
 
         private void Update()
         {
-            if (!_pickupAvailable) return;
-            if (!_input.interact) return;
-            PlayerItemController.instance.GetCorrectPlayerItem();
-            _pickupAvailable = false;
+            // Item Pickup
+            if (_pickupAvailable && _input.interact)
+            {
+                PlayerItemController.instance.GetCorrectPlayerItem();
+                _pickupAvailable = false;
+            }
+            
+            // Event 07
+            if (_pentagramAvailable && _input.interact)
+            {
+                StartCoroutine(CleansePentagram());
+                _pentagramAvailable = false;
+            }
+        }
+
+        private IEnumerator CleansePentagram()
+        {
+            yield return new WaitForSeconds(2f);
+            if(_lastPentagram != null)
+                Destroy(_lastPentagram);
+            
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("Trigger Enter");
-            if (!other.CompareTag("Interactable")) return;
-            _pickupAvailable = true;
+            // Item Pickup
+            if (other.CompareTag("Interactable"))
+            {
+                _pickupAvailable = true;
+            }
+            
+            // Event 07 Pentagram Interact
+            if (other.CompareTag("Event_07_Pentagram"))
+            {
+                _pentagramAvailable = true;
+                _lastPentagram = other.gameObject;
+            }
+            
         }
 
         private void OnTriggerExit(Collider other)
         {
-            Debug.Log("Trigger Exit");
-            if (!other.CompareTag("Interactable")) return;
-            _pickupAvailable = false;
+            if (other.CompareTag("Interactable"))
+            {
+                _pickupAvailable = false;
+            }
+            
+            if (other.CompareTag("Event_07_Pentagram"))
+            {
+                _pentagramAvailable = false;
+                _lastPentagram = null;
+            }
         }
 
         public void SetActiveItem(Data.PlayerItems item)

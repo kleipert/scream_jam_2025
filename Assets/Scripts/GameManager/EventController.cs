@@ -18,11 +18,16 @@ namespace GameManager
             }
             instance = this;
             
+            
+        }
+
+        private void Start()
+        {
             // WICHTIG:
             // HALLO LEON. VERGANGENHEITS-KEVIN HIER!
             // HIER KANNST DU EINFACH DEIN EVENT STARTEN, DASS DU GERADE ENTWICKELST, EINFACH DIE NAECHSTE ZEILE AENDERN!
             // GANZ LIEBE GRUESSE, LANG LEBE PROF DR. BLICK, AUF DAS ER MIR EINE EINFACHE ANALYSIS KLAUSUR GOENNT!
-            StartEvent(Data.Events.PlayerPossesed);
+            StartEvent(Data.Events.LightsOut);
         }
 
         private EventBase GetEventFromEnum(Data.Events eventToStart)
@@ -38,7 +43,7 @@ namespace GameManager
         public void StartEvent(Data.Events eventToStart)
         {
             _activeEvent = GetEventFromEnum(eventToStart);
-            _activeEvent.Start();
+            _activeEvent.StartEvent();
         }
 
         public Data.Events GetActiveEvent() => _activeEvent.GetEvent();

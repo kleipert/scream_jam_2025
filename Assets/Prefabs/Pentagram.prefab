@@ -1019,10 +1019,11 @@ GameObject:
   - component: {fileID: 4310848979274318212}
   - component: {fileID: 553356838729780455}
   - component: {fileID: 5496280780252566098}
-  - component: {fileID: 3233361185277437717}
+  - component: {fileID: 7762547747436804709}
+  - component: {fileID: 7003532489837150675}
   m_Layer: 0
   m_Name: Pentagram
-  m_TagString: Untagged
+  m_TagString: Event_07_Pentagram
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1037,7 +1038,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.44461, y: 0.65767, z: -4.2179}
-  m_LocalScale: {x: 0.4171838, y: 0.4171838, z: 0.4171838}
+  m_LocalScale: {x: 0.11481732, y: 0.11481732, z: 0.11481732}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4624930681988659045}
@@ -1112,8 +1113,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3233361185277437717
-MeshCollider:
+--- !u!54 &7762547747436804709
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9060683640378291768}
+  serializedVersion: 5
+  m_Mass: 0.001
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &7003532489837150675
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1127,13 +1155,12 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.558813, y: 3.5171006, z: 10.000001}
+  m_Center: {x: -0.22058386, y: -1.222881, z: -0.0000020765035}
 --- !u!1001 &516087515437937135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1145,6 +1172,10 @@ PrefabInstance:
     - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Candle_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4178742036463932, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1212,6 +1243,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Candle_02 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4178742036463932, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.9510751
@@ -1277,6 +1312,10 @@ PrefabInstance:
     - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Candle_02 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4178742036463932, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1344,6 +1383,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_Candle_02
       objectReference: {fileID: 0}
+    - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4178742036463932, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.9661283
@@ -1409,6 +1452,10 @@ PrefabInstance:
     - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Candle_02 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1358425249036360, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4178742036463932, guid: 408376bc49170dc48b46de24e23afef4, type: 3}
       propertyPath: m_LocalPosition.x
