@@ -139,7 +139,7 @@ MonoBehaviour:
   dialogueRunner: {fileID: 1971233098}
   starterAssetsInputs: {fileID: 1656768063}
   nodeForO: StartingDialog
-  nodeForP: AlternateStart
+  nodeForP: Dialog_05
   canInterrupt: 0
 --- !u!1001 &232101493
 PrefabInstance:

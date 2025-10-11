@@ -17,7 +17,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [SerializeField] private bool canInterrupt = false;
 
     void Awake() {
-        if (dialogueRunner == null) dialogueRunner = FindObjectOfType<DialogueRunner>();
+        if (dialogueRunner == null) dialogueRunner = FindFirstObjectByType<DialogueRunner>();
         if (dialogueRunner == null) Debug.LogError("Kein DialogueRunner in der Szene gefunden!");
     }
 
