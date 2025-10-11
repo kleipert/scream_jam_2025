@@ -11,8 +11,8 @@ public static class Data
         Shakle = 3,
         Medkit = 4,
         Senser = 5,
-        Cloth = 6,
-        Salt = 7,
+        Towel = 6,
+        Chalice = 7,
         Chalk = 8,
         None = 9
     }
@@ -40,14 +40,14 @@ public static class Data
 
     public static readonly Dictionary<Events, PlayerItems> EventsToItemsMap = new Dictionary<Events, PlayerItems>
     {
-        {Events.PlayerPossesed, PlayerItems.Salt},
+        {Events.PlayerPossesed, PlayerItems.Chalice},
         {Events.DemonThrowsItems, PlayerItems.None},
         {Events.PhoneRings, PlayerItems.None},
         {Events.UnholyFog, PlayerItems.Senser},
         {Events.FindCursedItem, PlayerItems.None},
         {Events.DemonFlies, PlayerItems.Bible},
         {Events.PlayerTeleports, PlayerItems.None},
-        {Events.LightsOut, PlayerItems.Cloth},
+        {Events.LightsOut, PlayerItems.Towel},
         {Events.PortalOpens, PlayerItems.Chalk},
         {Events.DemonThrowsUp, PlayerItems.None},
         {Events.TieDownDemon, PlayerItems.Shakle},

@@ -7,7 +7,7 @@ namespace Events
         public override void Start()
         {
             base.Start();
-            Event = Data.Events.SatanistsAttack;
+            Event = Data.Events.PlayerPossesed;
             Item = Data.EventsToItemsMap[Event];
         }
 
