@@ -1,13 +1,11 @@
-﻿using UnityEngine;
-
 namespace Events
 {
-    public class EventTest : EventBase
+    public class Event_08_PortalOpens : EventBase
     {
         public override void Start()
         {
             base.Start();
-            Event = Data.Events.PlayerPossesed;
+            Event = Data.Events.PortalOpens;
             Item = Data.EventsToItemsMap[Event];
         }
 
