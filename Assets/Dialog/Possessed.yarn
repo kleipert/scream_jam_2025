@@ -1,0 +1,22 @@
+﻿title: StartingDialog
+position: -712,-395
+---
+<<declare $playerName = "Alex">>
+<<Demon>>
+Vincent: Uh... G'Day... Its been awhile since I've had someone come past here. You look friendly though, friendly enough anyway.
+-> Hi <color=red>Vincent</color>, I'm {$playerName}. I'm just passing through.
+    <<Normal>>
+    Vincent: Oh, nice to meet you {$playerName}. I'm Vincent. I don't get many visitors out here. What brings you to these parts?
+    -> Just exploring the area.
+    -> Actually, I'm looking for some rare herbs. Do you know where I might find them?
+        <<Demon>>
+        Vincent: Rare herbs, you say? I might know a spot or two. But it's a bit of a trek through the woods. Are you sure you're up for it?
+===
+
+title: Explore
+position: -300,-405
+---
+Vincent: Just exploring, huh? Well, there's plenty to see around here. The forest is beautiful this time of year. Just be careful, alright? You never know what you might run into out there.
+-> Thanks for the warning, I'll be careful.
+    Vincent: No problem. If you need any help or directions, just holler. Enjoy your exploration!
+===
