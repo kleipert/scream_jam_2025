@@ -10,6 +10,7 @@ TagManager:
   - Event_11_Ghost
   - Dialog_Start
   - Event_03_Fog
+  - Event_02_Phone
   layers:
   - Default
   - TransparentFX

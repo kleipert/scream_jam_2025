@@ -15637,7 +15637,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4790307897417242, guid: 647e0fdeda71c554c9698615b11687d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1055261869}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 647e0fdeda71c554c9698615b11687d2, type: 3}
 --- !u!4 &840569847 stripped
@@ -19485,6 +19488,87 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4708040084410162, guid: 8df0763181c5e8449941330a494e3974, type: 3}
   m_PrefabInstance: {fileID: 1052143056}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1055261866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1055261869}
+  - component: {fileID: 1055261868}
+  - component: {fileID: 1055261867}
+  m_Layer: 0
+  m_Name: Phone_Collider
+  m_TagString: Event_02_Phone
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!54 &1055261867
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055261866}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &1055261868
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055261866}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1055261869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1055261866}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 840569847}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1058078073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31885,11 +31969,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3859336324316773513, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: nextLineKeyCode
-      value: 104
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3859336324316773513, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: hurryUpLineKeyCode
-      value: 101
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3859336324316773513, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: multiAdvanceIsCancel
@@ -40509,6 +40593,10 @@ PrefabInstance:
       propertyPath: 'fogs.Array.data[3]'
       value: 
       objectReference: {fileID: 1587519891}
+    - target: {fileID: 2363109828084574740, guid: 315da96d9fc39ec4ea2b3da235182bd4, type: 3}
+      propertyPath: _phoneCollider
+      value: 
+      objectReference: {fileID: 1055261866}
     - target: {fileID: 3584447088647495847, guid: 315da96d9fc39ec4ea2b3da235182bd4, type: 3}
       propertyPath: starterAssets
       value: 

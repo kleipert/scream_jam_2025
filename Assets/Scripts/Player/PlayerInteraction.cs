@@ -4,6 +4,7 @@ using GameManager;
 using JetBrains.Annotations;
 using StarterAssets;
 using UnityEngine;
+using Yarn.Unity;
 
 namespace Player
 {
@@ -12,6 +13,10 @@ namespace Player
         [SerializeField] private GameObject[] playerItems;
         private StarterAssetsInputs _input;
         private bool _pickupAvailable = false;
+        
+        // Event 02 Variables
+        [SerializeField] private DialogueRunner dialogueRunner;
+        private bool _phoneAvailable = false;
         
         // Event 03 Variables
         private bool _fogAvailable = false;
@@ -22,6 +27,11 @@ namespace Player
         private bool _pentagramAvailable = false;
         [CanBeNull] private GameObject _lastPentagram;
         private uint pentagramsCnt = 5;
+        
+        void Awake()
+        {
+            if (!dialogueRunner) dialogueRunner = FindFirstObjectByType<DialogueRunner>();
+        }
 
         private void Start()
         {
@@ -41,6 +51,17 @@ namespace Player
             if (EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed && _input.interact)
             { 
                 StartCoroutine(DrinkWine());
+            }
+            
+            //Event 02
+            if (_phoneAvailable && _input.interact)
+            {
+                _phoneAvailable = false;
+                if (!dialogueRunner.IsDialogueRunning)
+                {
+                    dialogueRunner.StartDialogue("Dialog_Phone");
+                    EventController.instance.StopCurrentEvent();
+                }
             }
             
             // Event 03
@@ -99,6 +120,12 @@ namespace Player
             if (other.CompareTag("Interactable"))
             {
                 _pickupAvailable = true;
+            }
+            
+            //Event 02
+            if (other.CompareTag("Event_02_Phone"))
+            {
+                _phoneAvailable = true;
             }
             
             // Event 03 
