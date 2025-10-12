@@ -12,6 +12,10 @@ namespace Player
         private StarterAssetsInputs _input;
         private bool _pickupAvailable = false;
         
+        // Event 03 Variables
+        private bool _fogAvailable = false;
+        [CanBeNull] private GameObject _lastFog;
+        private uint _fogsCnt = 4;
         
         // Event 07 Variables
         private bool _pentagramAvailable = false;
@@ -32,12 +36,32 @@ namespace Player
                 _pickupAvailable = false;
             }
             
+            // Event 03
+            if (_fogAvailable && _input.interact)
+            {
+                StartCoroutine(CleanseFog());
+                _fogAvailable  = false;
+            }
+            
             // Event 07
             if (_pentagramAvailable && _input.interact)
             {
                 StartCoroutine(CleansePentagram());
                 _pentagramAvailable = false;
                 
+            }
+        }
+
+        private IEnumerator CleanseFog()
+        {
+            //GameObject.Find("Senser").GetComponent<Animator>().SetTrigger("Sensing");
+            yield return new WaitForSeconds(2f);
+            if (_lastFog != null)
+            {
+                Destroy(_lastFog);
+                _fogsCnt--;
+                if(_fogsCnt == 0)
+                    EventController.instance.StopCurrentEvent();
             }
         }
 
@@ -62,6 +86,13 @@ namespace Player
                 _pickupAvailable = true;
             }
             
+            // Event 03 
+            if (other.CompareTag("Event_03_Fog"))
+            {
+                _fogAvailable = true;
+                _lastFog = other.gameObject;
+            }
+            
             // Event 07 Pentagram Interact
             if (other.CompareTag("Event_07_Pentagram"))
             {
@@ -77,6 +108,12 @@ namespace Player
             {
                 _pickupAvailable = false;
             }
+
+            if (other.CompareTag("Event_03_Fog"))
+            {
+                _fogAvailable = false;
+                _lastFog = null;
+            }    
             
             if (other.CompareTag("Event_07_Pentagram"))
             {

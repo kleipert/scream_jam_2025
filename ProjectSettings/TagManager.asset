@@ -8,6 +8,8 @@ TagManager:
   - Interactable
   - Event_07_Pentagram
   - Event_11_Ghost
+  - Dialog_Start
+  - Event_03_Fog
   layers:
   - Default
   - TransparentFX

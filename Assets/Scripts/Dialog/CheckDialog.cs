@@ -36,6 +36,7 @@ public class CheckDialog : MonoBehaviour
         {
             starterInputs.cursorInputForLook = !active;
             starterInputs.cursorLocked       = !active;
+            starterInputs.canMove = !active;
         }
         Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible   = active;
