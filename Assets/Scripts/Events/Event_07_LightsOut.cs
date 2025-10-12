@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using GameManager;
 using UnityEngine;
 
 namespace Events

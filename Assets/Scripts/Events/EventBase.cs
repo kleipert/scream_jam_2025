@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GameManager;
+using UnityEngine;
 
 namespace Events
 {
@@ -17,6 +18,7 @@ namespace Events
         public virtual void StopEvent()
         {
             EventDone = true;
+            PlayerItemController.instance.ClearPlayerItem();
             this.gameObject.SetActive(false);
         }
 
