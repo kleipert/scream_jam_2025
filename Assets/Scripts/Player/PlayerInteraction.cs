@@ -1,4 +1,5 @@
 using System.Collections;
+using Enemies;
 using GameManager;
 using JetBrains.Annotations;
 using StarterAssets;
@@ -69,6 +70,12 @@ namespace Player
                 _lastPentagram = other.gameObject;
             }
             
+            // Event 11 Ghost Interact
+            if (other.CompareTag("Event_11_Ghost"))
+            {
+                if(other.GetComponent<Event11Ghosts>().isAttacking)
+                    Destroy(other.gameObject);
+            }
         }
 
         private void OnTriggerExit(Collider other)

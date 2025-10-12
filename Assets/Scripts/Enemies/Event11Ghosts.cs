@@ -1,4 +1,5 @@
 ﻿using System;
+using Events;
 using Player;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,6 +12,7 @@ namespace Enemies
         private NavMeshAgent _agent;
         public bool isAttacking = false;
         [SerializeField] private GameObject player;
+        [SerializeField] private GameObject eventObject;
         private void Start()
         {
             _agent = GetComponent<NavMeshAgent>();
@@ -22,7 +24,7 @@ namespace Enemies
             if (isAttacking)
             {
                 _agent.destination = player.transform.position;
-                if (Vector3.Distance(transform.position, player.transform.position) <= .3)
+                if (Vector3.Distance(transform.position, player.transform.position) <= 1)
                 {
                     _agent.destination = _startPos;
                     isAttacking = false;
@@ -33,7 +35,8 @@ namespace Enemies
 
         private void OnDestroy()
         {
-            
+            eventObject.GetComponent<Event_11_GhostsAttack>().RemoveGhost(this.gameObject);
+            player.GetComponent<Event11PlayerData>().getsAttacked = false;
         }
     }
 }

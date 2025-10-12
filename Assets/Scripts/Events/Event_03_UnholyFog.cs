@@ -1,3 +1,6 @@
+using System;
+using UnityEngine;
+
 namespace Events
 {
     public class Event_03_UnholyFog : EventBase

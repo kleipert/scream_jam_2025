@@ -29,10 +29,10 @@ namespace GameManager
             // GANZ LIEBE GRUESSE, LANG LEBE PROF DR. BLICK, AUF DAS ER MIR EINE EINFACHE ANALYSIS KLAUSUR GOENNT!
 
             
-            StartEvent(Data.Events.None);
-            lastEvent = Data.Events.None;
+            //StartEvent(Data.Events.None);
+            //lastEvent = Data.Events.None;
             // Testing
-            //StartEvent(Data.Events.GhostsAttack);
+            StartEvent(Data.Events.GhostsAttack);
         }
 
         private EventBase GetEventFromEnum(Data.Events eventToStart)
