@@ -11,6 +11,7 @@ TagManager:
   - Dialog_Start
   - Event_03_Fog
   - Event_02_Phone
+  - Event_04_Cursed
   layers:
   - Default
   - TransparentFX

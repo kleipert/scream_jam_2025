@@ -23,6 +23,10 @@ namespace Player
         [CanBeNull] private GameObject _lastFog;
         private uint _fogsCnt = 4;
         
+        // Event 04 Variables
+        [SerializeField] private GameObject cursedObject;
+        private bool _curseAvaible;
+        
         // Event 07 Variables
         private bool _pentagramAvailable = false;
         [CanBeNull] private GameObject _lastPentagram;
@@ -69,6 +73,13 @@ namespace Player
             {
                 StartCoroutine(CleanseFog());
                 _fogAvailable  = false;
+            }
+            
+            // Event 04
+            if (_curseAvaible && _input.interact)
+            {
+                cursedObject.SetActive(false);
+                EventController.instance.StopCurrentEvent();
             }
             
             // Event 07
@@ -133,6 +144,12 @@ namespace Player
             {
                 _fogAvailable = true;
                 _lastFog = other.gameObject;
+            }
+            
+            // Event 04
+            if (other.CompareTag("Event_04_Cursed"))
+            {
+                _curseAvaible = true;
             }
             
             // Event 07 Pentagram Interact
