@@ -136,6 +136,7 @@ Andrew:We must stand firm in our faith and resist the darkness.
 Alice:Agh… it hurts… I can feel it coming back.
 <<Demon>>
 ?????:<color=red>Thou shalt not be rid of me so soon.</color>
+<<Normal>>
     ->Our Father which art in heaven...
         <<Unlock>>
         <<Call 8>>

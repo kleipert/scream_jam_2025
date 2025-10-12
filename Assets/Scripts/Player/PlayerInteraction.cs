@@ -37,6 +37,12 @@ namespace Player
                 _pickupAvailable = false;
             }
             
+            // Event 00
+            if (EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed && _input.interact)
+            { 
+                StartCoroutine(DrinkWine());
+            }
+            
             // Event 03
             if (_fogAvailable && _input.interact)
             {
@@ -77,6 +83,14 @@ namespace Player
                 if(pentagramsCnt == 0)
                     EventController.instance.StopCurrentEvent();
             }
+        }
+
+        private IEnumerator DrinkWine()
+        {
+            //GameObject.Find("ItemTowel").GetComponent<Animator>().SetTrigger("DrinkWine");
+            yield return new WaitForSeconds(2f);
+            _input.invert = !_input.invert;
+            EventController.instance.StopCurrentEvent();
         }
 
         private void OnTriggerEnter(Collider other)

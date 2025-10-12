@@ -28,11 +28,13 @@ namespace GameManager
             // HIER KANNST DU EINFACH DEIN EVENT STARTEN, DASS DU GERADE ENTWICKELST, EINFACH DIE NAECHSTE ZEILE AENDERN!
             // GANZ LIEBE GRUESSE, LANG LEBE PROF DR. BLICK, AUF DAS ER MIR EINE EINFACHE ANALYSIS KLAUSUR GOENNT!
 
+            //WICHTIG:
+            //HEJ ZUKUNFTS-KEVIN NÄCHSTES MAL BESCHEID SAGEN BEVOR ICH 5 MIN SUCHEN KANN WARUM MEIN SCHEISS NICHT MEHR LÄUFT!
             
             //StartEvent(Data.Events.None);
             //lastEvent = Data.Events.None;
             // Testing
-            StartEvent(Data.Events.GhostsAttack);
+            //StartEvent(Data.Events.GhostsAttack);
         }
 
         private EventBase GetEventFromEnum(Data.Events eventToStart)

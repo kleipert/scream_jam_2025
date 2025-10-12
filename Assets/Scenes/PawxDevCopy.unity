@@ -5368,7 +5368,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.4
-  m_Center: {x: -0.0019698143, y: 0.000013321638, z: 3.7984867}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &336940820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11686,7 +11686,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.4
-  m_Center: {x: -0.10271311, y: -0.00020839274, z: 2.3787746}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &636425192
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13080,6 +13080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Event11Ghosts
   isAttacking: 0
   player: {fileID: 1272856310}
+  eventObject: {fileID: 0}
 --- !u!195 &724417912
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14556,6 +14557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Event11Ghosts
   isAttacking: 0
   player: {fileID: 1272856310}
+  eventObject: {fileID: 0}
 --- !u!195 &785219277
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -18294,6 +18296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Event11Ghosts
   isAttacking: 0
   player: {fileID: 1272856310}
+  eventObject: {fileID: 0}
 --- !u!195 &994763932
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -29910,7 +29913,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.4
-  m_Center: {x: 0.29909515, y: 0.000028118491, z: 4.830467}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1590196201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32749,6 +32752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Event11Ghosts
   isAttacking: 0
   player: {fileID: 1272856310}
+  eventObject: {fileID: 0}
 --- !u!195 &1683210327
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -35864,6 +35868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Event11Ghosts
   isAttacking: 0
   player: {fileID: 1272856310}
+  eventObject: {fileID: 0}
 --- !u!195 &1893534248
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -36521,7 +36526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4039149909991644, guid: 1b9b34a00882c7c4db80d92782135612, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.41
+      value: 14.961
       objectReference: {fileID: 0}
     - target: {fileID: 4039149909991644, guid: 1b9b34a00882c7c4db80d92782135612, type: 3}
       propertyPath: m_LocalRotation.w
@@ -40504,6 +40509,10 @@ PrefabInstance:
       propertyPath: 'fogs.Array.data[3]'
       value: 
       objectReference: {fileID: 1587519891}
+    - target: {fileID: 3584447088647495847, guid: 315da96d9fc39ec4ea2b3da235182bd4, type: 3}
+      propertyPath: starterAssets
+      value: 
+      objectReference: {fileID: 148826387}
     - target: {fileID: 5398545264341731593, guid: 315da96d9fc39ec4ea2b3da235182bd4, type: 3}
       propertyPath: m_Name
       value: Events
@@ -40618,6 +40627,10 @@ PrefabInstance:
       propertyPath: playerInteraction
       value: 
       objectReference: {fileID: 350416574}
+    - target: {fileID: 3563027332378370509, guid: 88d6d450e07117f42889eebbf046e715, type: 3}
+      propertyPath: lastEvent
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 3563027332378370509, guid: 88d6d450e07117f42889eebbf046e715, type: 3}
       propertyPath: 'allEvents.Array.data[0]'
       value: 
