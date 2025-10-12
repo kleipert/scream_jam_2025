@@ -40,6 +40,9 @@ namespace Player
         [CanBeNull] private GameObject _lastPentagram;
         private uint pentagramsCnt = 5;
         
+        // Event 12 Variables 
+        private bool _canHeal;
+        
         void Awake()
         {
             if (!dialogueRunner) dialogueRunner = FindFirstObjectByType<DialogueRunner>();
@@ -108,6 +111,13 @@ namespace Player
             {
                 StartCoroutine(CleansePentagram());
                 _pentagramAvailable = false;
+            }
+            
+            // Event 12
+            if (EventController.instance.GetActiveEvent() == Data.Events.FirstAidForDemon)
+            {
+                if (_canHeal && _input.interact && PlayerItemController.instance.hasItem)
+                    EventController.instance.StopCurrentEvent();
             }
         }
 
@@ -191,6 +201,12 @@ namespace Player
                 if(other.GetComponent<Event11Ghosts>().isAttacking)
                     Destroy(other.gameObject);
             }
+            
+            // Event 12 
+            if (other.CompareTag("Event_12_Heal"))
+            {
+                _canHeal = true;
+            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -210,6 +226,11 @@ namespace Player
             {
                 _pentagramAvailable = false;
                 _lastPentagram = null;
+            }
+
+            if (other.CompareTag("Event_12_Heal"))
+            {
+                _canHeal = false;
             }
         }
 

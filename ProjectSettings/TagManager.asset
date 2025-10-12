@@ -13,6 +13,7 @@ TagManager:
   - Event_02_Phone
   - Event_04_Cursed
   - Event_05_Flying
+  - Event_12_Heal
   layers:
   - Default
   - TransparentFX
