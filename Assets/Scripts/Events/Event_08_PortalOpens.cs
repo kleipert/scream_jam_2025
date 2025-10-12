@@ -2,16 +2,16 @@ namespace Events
 {
     public class Event_08_PortalOpens : EventBase
     {
-        public override void Start()
+        public override void StartEvent()
         {
-            base.Start();
+            base.StartEvent();
             Event = Data.Events.PortalOpens;
             Item = Data.EventsToItemsMap[Event];
         }
 
-        public override void Stop()
+        public override void StopEvent()
         {
-            base.Stop();
+            base.StopEvent();
         }
     }
 }

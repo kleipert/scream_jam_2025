@@ -1,25 +1,29 @@
-﻿using UnityEngine;
+﻿using GameManager;
+using UnityEngine;
 
 namespace Events
 {
     public class EventBase : MonoBehaviour
     {
-        protected Data.Events Event;
-        protected Data.PlayerItems Item;
+        [SerializeField] protected Data.Events Event;
+        [SerializeField] protected Data.PlayerItems Item;
+        [SerializeField] protected bool EventDone = false;
+        
 
-        public virtual void Start()
+        public virtual void StartEvent()
         {
-            Event = Data.Events.None;
-            Item = Data.EventsToItemsMap[Event];
             this.gameObject.SetActive(true);
         }
         
-        public virtual void Stop()
+        public virtual void StopEvent()
         {
+            EventDone = true;
+            PlayerItemController.instance.ClearPlayerItem();
             this.gameObject.SetActive(false);
         }
 
         public Data.Events GetEvent() => Event;
         public Data.PlayerItems GetItem() => Item;
+        public bool IsEventDone() => EventDone;
     }
 }

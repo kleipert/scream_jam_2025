@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72543dcdfa58484d892f0e59cdfdef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_05_DemonFlies
+  Event: 5
+  Item: 0
 --- !u!1 &1085798796050507348
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +90,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdcab7be0e312084cb9358f6c4a8fe1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_07_LightsOut
+  Event: 7
+  Item: 6
+  lightSources: {fileID: 0}
+  pentagrams:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  lightTimer: 3
 --- !u!1 &1386961020280713248
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2292c61b894cdc41ad3cf71ac567fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_04_FindCursedItem
+  Event: 4
+  Item: 9
 --- !u!1 &1846338678763482622
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,6 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dd713cecd1076c4882f31614be57428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_11_GhostsAttack
+  Event: 11
+  Item: 1
 --- !u!1 &2115434603147563886
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b92bababd5797e4e80ff7cb2db4eff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_10_TieDemonDown
+  Event: 10
+  Item: 3
 --- !u!1 &2535573731862437992
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab500434ed0e3ca44b4880bef181b187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_08_PortalOpens
+  Event: 8
+  Item: 8
 --- !u!1 &3171155427147123975
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2131a02306b8fdd40b3facab051e4e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_00_PlayerPossesed
+  Event: 0
+  Item: 7
 --- !u!1 &3199125176262347217
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +374,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5abbf3d5bdafe514b9cc5c027815d00d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_01_DemonThrowsItems
+  Event: 1
+  Item: 9
 --- !u!1 &3489273988127497524
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f7745f6937d0d34683ee0eecc0e8bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_15_TrueName
+  Event: 15
+  Item: 9
 --- !u!1 &3614544798938836366
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e78e98f6a583324b8774863cc27fb16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_02_PhoneRings
+  Event: 2
+  Item: 9
 --- !u!1 &4029852993012836900
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,6 +512,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0cf83a1fc31724698c1cdb1fdc0474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_13_TelevisionTurnsOn
+  Event: 13
+  Item: 9
 --- !u!1 &4681418730028690383
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d2ef24cb3fa661409f8c93ac43d5224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_14_SatanistsAttack
+  Event: 14
+  Item: 2
 --- !u!1 &5398545264341731593
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,6 +651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01960eb582b1e384e970a5d31dacff27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_09_DemonThrowsUp
+  Event: 9
+  Item: 9
 --- !u!1 &6634311153308761768
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,6 +697,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: febeed55b3776984ba17d05413b37f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_12_FirstAidForDemon
+  Event: 12
+  Item: 4
 --- !u!1 &6803877743570912087
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +743,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b115a862e5f8e5e4c85d4592ee8e034e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_06_PlayerTeleports
+  Event: 6
+  Item: 9
 --- !u!1 &7455799599520505107
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,3 +789,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cade8f450c94ead4185aae0cec6c4ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Events.Event_03_UnholyFog
+  Event: 3
+  Item: 5

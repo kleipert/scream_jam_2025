@@ -23,5 +23,10 @@ namespace GameManager
             var eventItem = Data.EventsToItemsMap[activeEvent];
             playerInteraction.SetActiveItem(eventItem);
         }
+
+        public void ClearPlayerItem()
+        {
+            playerInteraction.RemoveActiveItem();
+        }
     }
 }

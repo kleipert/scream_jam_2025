@@ -1,17 +1,57 @@
+using System;
+using System.Collections;
+using GameManager;
+using UnityEngine;
+
 namespace Events
 {
+    /// <summary>
+    /// 1) Turn off lights +
+    /// 2) Activate Pentagrams +
+    /// 3) Turn lights back on after few seconds +
+    /// 4) Pickup Towel +
+    /// 5) Cleanse Pentagrams +
+    /// 6) Stop Event
+    /// </summary>
     public class Event_07_LightsOut : EventBase
     {
-        public override void Start()
+        [SerializeField] private GameObject lightSources;
+        [SerializeField] private GameObject[] pentagrams;
+        [SerializeField] private float lightTimer = 3f;
+        private bool pentagramActive = false;
+        private Animation _towelAnimation;
+        
+        public override void StartEvent()
         {
-            base.Start();
+            base.StartEvent();
             Event = Data.Events.LightsOut;
             Item = Data.EventsToItemsMap[Event];
+            _towelAnimation = GetComponent<Animation>();
+
+            StartCoroutine(InitializeEvent());
         }
 
-        public override void Stop()
+        private void Update()
         {
-            base.Stop();
+            if (!pentagramActive) return;
+        }
+
+        private IEnumerator InitializeEvent()
+        {
+            yield return new WaitForSeconds(lightTimer);
+            lightSources.SetActive(false);
+            yield return new WaitForSeconds(lightTimer);
+            lightSources.SetActive(true);
+            foreach (var pentagram in pentagrams)
+            {
+                pentagram.SetActive(true);
+            }
+            pentagramActive = true;
+        }
+
+        public override void StopEvent()
+        {
+            base.StopEvent();
         }
     }
 }

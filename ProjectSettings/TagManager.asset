@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Interactable
+  - Event_07_Pentagram
   layers:
   - Default
   - TransparentFX
