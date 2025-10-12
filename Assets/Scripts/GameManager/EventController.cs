@@ -9,6 +9,8 @@ namespace GameManager
         public static EventController instance;
         private EventBase _activeEvent;
         public EventBase[] allEvents;
+        public Data.Events lastEvent;
+        public bool isEventActive = false;
 
         private void Awake()
         {
@@ -25,11 +27,20 @@ namespace GameManager
             // HALLO LEON. VERGANGENHEITS-KEVIN HIER!
             // HIER KANNST DU EINFACH DEIN EVENT STARTEN, DASS DU GERADE ENTWICKELST, EINFACH DIE NAECHSTE ZEILE AENDERN!
             // GANZ LIEBE GRUESSE, LANG LEBE PROF DR. BLICK, AUF DAS ER MIR EINE EINFACHE ANALYSIS KLAUSUR GOENNT!
+
+            
+            StartEvent(Data.Events.None);
+            lastEvent = Data.Events.None;
+            // Testing
             //StartEvent(Data.Events.GhostsAttack);
         }
 
         private EventBase GetEventFromEnum(Data.Events eventToStart)
         {
+            if (eventToStart == Data.Events.None)
+            {
+                return null;
+            }
             foreach (var possibleEvent in allEvents)
             {
                 if (possibleEvent.GetEvent() == eventToStart)
@@ -41,15 +52,17 @@ namespace GameManager
         public void StartEvent(Data.Events eventToStart)
         {
             _activeEvent = GetEventFromEnum(eventToStart);
-            _activeEvent.StartEvent();
+            _activeEvent?.StartEvent();
         }
 
         public void StopCurrentEvent()
         {
-            _activeEvent.StopEvent();
+            lastEvent = _activeEvent.GetEvent();
+            _activeEvent?.StopEvent();
+            _activeEvent = null;
         }
 
-        public Data.Events GetActiveEvent() => _activeEvent.GetEvent();
-        public Data.PlayerItems GetActiveItem() => _activeEvent.GetItem();
+        public Data.Events GetActiveEvent() => _activeEvent != null ? _activeEvent.GetEvent() : Data.Events.None;
+        public Data.PlayerItems GetActiveItem() => _activeEvent != null ? _activeEvent.GetItem() : Data.PlayerItems.None;
     }
 }
