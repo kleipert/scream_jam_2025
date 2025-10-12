@@ -32,7 +32,7 @@ namespace GameManager
             //StartEvent(Data.Events.None);
             //lastEvent = Data.Events.None;
             // Testing
-            StartEvent(Data.Events.GhostsAttack);
+            StartEvent(Data.Events.DemonThrowsItems);
         }
 
         private EventBase GetEventFromEnum(Data.Events eventToStart)
