@@ -13,10 +13,12 @@ namespace Events
         public virtual void StartEvent()
         {
             this.gameObject.SetActive(true);
+            EventController.instance.isEventActive = true;
         }
         
         public virtual void StopEvent()
         {
+            EventController.instance.isEventActive = false;
             EventDone = true;
             PlayerItemController.instance.ClearPlayerItem();
             this.gameObject.SetActive(false);
