@@ -14,7 +14,6 @@ namespace Events
         [SerializeField] private List<GameObject> ghosts;
         [SerializeField] private GameObject player;
         private Event11PlayerData playerData;
-        private bool itemPicked = false;
         private bool ghostsSpawned = false;
 
         public override void StartEvent()
