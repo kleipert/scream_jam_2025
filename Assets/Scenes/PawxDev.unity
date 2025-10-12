@@ -12785,7 +12785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Event11Ghosts
   isAttacking: 0
-  player: {fileID: 1272856310}
+  player: {fileID: 823894949}
 --- !u!195 &724417912
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14126,7 +14126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 819076219791829931, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.762241
+      value: -1.91
       objectReference: {fileID: 0}
     - target: {fileID: 819076219791829931, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14188,9 +14188,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2412869969678107712, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6840198015320122378, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1272856312}
+      addedObject: {fileID: 823894956}
     - targetCorrespondingSourceObject: {fileID: 1862883056034361479, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
       insertIndex: -1
       addedObject: {fileID: 56291301}
@@ -14242,7 +14242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Event11Ghosts
   isAttacking: 0
-  player: {fileID: 1272856310}
+  player: {fileID: 823894949}
 --- !u!195 &785219277
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14859,6 +14859,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4100430342118746, guid: a3edcfa3c78aa8749bc6ac55eea2f67a, type: 3}
   m_PrefabInstance: {fileID: 823537163}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &823894949 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6840198015320122378, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
+  m_PrefabInstance: {fileID: 777975599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &823894956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823894949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72dd8933a14e47dbaffce9c957bb734d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player.Event11PlayerData
+  getsAttacked: 0
+  ghostsKilled: 0
+  allGhostsKilled: 0
 --- !u!1001 &824068193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17786,7 +17806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Event11Ghosts
   isAttacking: 0
-  player: {fileID: 1272856310}
+  player: {fileID: 823894949}
 --- !u!195 &994763932
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -22770,26 +22790,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4708040084410162, guid: 8df0763181c5e8449941330a494e3974, type: 3}
   m_PrefabInstance: {fileID: 1270382012}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1272856310 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2412869969678107712, guid: 31b4532ac2b9b7c428cef3cfd5056d72, type: 3}
-  m_PrefabInstance: {fileID: 777975599}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1272856312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1272856310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72dd8933a14e47dbaffce9c957bb734d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player.Event11PlayerData
-  getsAttacked: 0
-  ghostsKilled: 0
-  allGhostsKilled: 0
 --- !u!1001 &1287366458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31085,7 +31085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Event11Ghosts
   isAttacking: 0
-  player: {fileID: 1272856310}
+  player: {fileID: 823894949}
 --- !u!195 &1683210327
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -34114,7 +34114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemies.Event11Ghosts
   isAttacking: 0
-  player: {fileID: 1272856310}
+  player: {fileID: 823894949}
 --- !u!195 &1893534248
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -38585,7 +38585,7 @@ PrefabInstance:
     - target: {fileID: 1370908974798782705, guid: 315da96d9fc39ec4ea2b3da235182bd4, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1272856310}
+      objectReference: {fileID: 823894949}
     - target: {fileID: 1370908974798782705, guid: 315da96d9fc39ec4ea2b3da235182bd4, type: 3}
       propertyPath: ghosts.Array.size
       value: 5

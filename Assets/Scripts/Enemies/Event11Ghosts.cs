@@ -7,14 +7,14 @@ namespace Enemies
 {
     public class Event11Ghosts : MonoBehaviour
     {
-        private Transform _startPos;
+        private Vector3 _startPos;
         private NavMeshAgent _agent;
         public bool isAttacking = false;
         [SerializeField] private GameObject player;
         private void Start()
         {
             _agent = GetComponent<NavMeshAgent>();
-            _startPos = transform;
+            _startPos = transform.position;
         }
 
         private void Update()
@@ -22,13 +22,18 @@ namespace Enemies
             if (isAttacking)
             {
                 _agent.destination = player.transform.position;
-                if (Vector3.Distance(transform.position, player.transform.position) <= .1)
+                if (Vector3.Distance(transform.position, player.transform.position) <= .3)
                 {
-                    _agent.destination = _startPos.position;
+                    _agent.destination = _startPos;
                     isAttacking = false;
                     player.GetComponent<Event11PlayerData>().getsAttacked = false;
                 }
             }
+        }
+
+        private void OnDestroy()
+        {
+            
         }
     }
 }
