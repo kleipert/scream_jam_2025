@@ -110,7 +110,7 @@ position: -712,-395
     ->Nothing can shake me, my faith stands firmer than ever.
         <<Unlock>>
         <<Call 7>>
-        <<wait 2>>
+        <<wait 8>>
         <<CloseEnable>>
         Andrew:<i>Quick, I have to wipe off the banishing circles.</i>
         <<CloseDisable>>

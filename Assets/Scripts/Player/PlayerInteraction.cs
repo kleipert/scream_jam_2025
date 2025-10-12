@@ -27,6 +27,14 @@ namespace Player
         [SerializeField] private GameObject cursedObject;
         private bool _curseAvaible;
         
+        // Event 05 Variables 
+        [SerializeField] private GameObject possessedWoman;
+        [SerializeField] private float flyingSpeed = 1.0f;
+        [SerializeField] private float height = 2.0f;
+        private bool _isFlying;
+        private Vector3 _startPos;
+        private float _maxHeight;
+        
         // Event 07 Variables
         private bool _pentagramAvailable = false;
         [CanBeNull] private GameObject _lastPentagram;
@@ -39,6 +47,8 @@ namespace Player
 
         private void Start()
         {
+            _startPos = possessedWoman.transform.position;
+            _maxHeight = possessedWoman.transform.position.y + height;
             _input = GetComponentInParent<StarterAssetsInputs>();
         }
 
@@ -82,12 +92,22 @@ namespace Player
                 EventController.instance.StopCurrentEvent();
             }
             
+            // Event 05
+            if (EventController.instance.GetActiveEvent() == Data.Events.DemonFlies)
+            {
+                if (!_isFlying)
+                    StartCoroutine(StartFlying());
+                if (_isFlying && possessedWoman.transform.position.y < _maxHeight)
+                    possessedWoman.transform.position += Vector3.up * (flyingSpeed * Time.deltaTime);
+                if (possessedWoman.transform.position.y < _startPos.y)
+                    EventController.instance.StopCurrentEvent();
+            }
+            
             // Event 07
             if (_pentagramAvailable && _input.interact)
             {
                 StartCoroutine(CleansePentagram());
                 _pentagramAvailable = false;
-                
             }
         }
 
@@ -123,6 +143,12 @@ namespace Player
             yield return new WaitForSeconds(2f);
             _input.invert = !_input.invert;
             EventController.instance.StopCurrentEvent();
+        }
+
+        private IEnumerator StartFlying()
+        {
+            yield return new WaitForSeconds(2f);
+            _isFlying = true;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -184,6 +210,18 @@ namespace Player
             {
                 _pentagramAvailable = false;
                 _lastPentagram = null;
+            }
+        }
+
+        private void OnTriggerStay(Collider other)
+        {
+            // Event 05
+            if (other.CompareTag("Event_05_Flying"))
+            {
+                if (_input.interact && PlayerItemController.instance.hasItem)
+                {
+                    possessedWoman.transform.position += Vector3.down * (flyingSpeed * 2 * Time.deltaTime);
+                }
             }
         }
 

@@ -12,6 +12,7 @@ TagManager:
   - Event_03_Fog
   - Event_02_Phone
   - Event_04_Cursed
+  - Event_05_Flying
   layers:
   - Default
   - TransparentFX
