@@ -1,6 +1,7 @@
 ﻿title: StartingDialog
 position: -712,-395
 ---
+<<Lock>>
 <<Normal>>
 Alice: Ah, my head hurts so much. Where am I? Who are you? What's happening to me?
 Andrew: Good evening, I'm Father Andrew. Your mother called me because she's very worried about you.
@@ -19,12 +20,23 @@ Andrew:Leave the girl and return to the pit that spawned you.
 ?????:<color=red>Trying to save her? Then offer yourself. You might prove the better vessel.</color>
 <<Normal>>
     ->In the name of the Lord, release the girl, demon.
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>Quick, I need to take cover!</i>
+        <<CloseDisable>>
     -> Take me, and spare the girl.
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>I, I feel awful, I need the purifying wine.</i>
+        <<CloseDisable>>
 ===
 
 title: Dialog_01
 position: -712,-395
 ---
+<<Lock>>
 <<Demon>>
 ?????:<color=red>I've rarely tasted such rot as you.</color>
 ?????:<color=red>How fortunate for me that you drove me out.</color>
@@ -41,12 +53,23 @@ Andrew:The Lord answers every one of His children!
 ?????:<color=red>Doesn't my sexy body do it for you?</color>
 <<Normal>>
     ->You will not tempt me, demon. Leave this place at once!
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>I need to quickly cleanse the air with incense.</i>
+        <<CloseDisable>>
     ->Maybe a little?
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>Who calls at a time like this?</i>
+        <<CloseDisable>>
 ===
 
 title: Dialog_02
 position: -712,-395
 ---
+<<Lock>>
 <<Demon>>
 ?????:<color=red>You cower and hide, much like your God.</color>
 <<Normal>>
@@ -57,23 +80,45 @@ Andrew:He abandons none of His children!
 ?????:<color=red>Why do you tremble before me?</color>
 <<Normal>>
     ->Tremble? After such a pathetic little move?
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>Hurry! I need the Holy Bible to weaken it!</i>
+        <<CloseDisable>>
     -><i>I must find a way to weaken the demon.</i>
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>The music box looks suspicious.</i>
+        <<CloseDisable>>
 === 
 
 title: Dialog_03
 position: -712,-395
 ---
+<<Lock>>
 <<Demon>>
 ?????:<color=red>Enjoy your pleasant li</color><color=black><b>t</b></color><color=red>tle talk with my friend?</color>
 ?????:<color=red>He seems to have left you quite embarrassed.</color>
 <<Normal>>
     ->Nothing can shake me, my faith stands firmer than ever.
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>Quick, I have to wipe off the banishing circles.</i>
+        <<CloseDisable>>
     -><i>I… I'm at a loss.</i>
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>What… is this place?</i>
+        <<CloseDisable>>
 ===
 
 title: Dialog_04
 position: -712,-395
 ---
+<<Lock>>
 <<Demon>>
 ?????:<color=red>Agh! You goddamn maggo</color><color=black><b>t</b></color><color=red>!</color>
 Alice:Please, help me, before it comes back.
@@ -82,62 +127,103 @@ Andrew:We must stand firm in our faith and resist the darkness.
 Alice:Agh… it hurts… I can feel it coming back.
 ?????:<color=red>Thou shalt not be rid of me so soon.</color>
     ->Our Father which art in heaven...
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>I have to destroy the portal using a chalk banishing circle!</i>
+        <<CloseDisable>>
     ->Has it not silenced you yet?
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>I need to quickly clean my face.</i>
+        <<CloseDisable>>
 ===
 
 title: Dialog_05
 position: -712,-395
 ---
+<<Lock>>
 <<Normal>>
 Andrew:<i>In the name of the Fa<color=yellow>t</color>her, what is happening here?</i>
 Andrew:<i>I need to tie her down before she injures herself.</i>
+<<Unlock>>
+<<wait 2>>
+<<CloseEnable>>
+Andrew:<i>Quick, the ropes!</i>
+<<CloseDisable>>
 ===
 
 title: Dialog_06
 position: -712,-395
 ---
+<<Lock>>
 <<Demon>>
 ?????:<color=red>Do you really bel</color><color=black><b>i</b></color><color=red>eve your pitiful efforts amount to anything?</color>
 ?????:<color=red>You're just a pawn in a game far beyond your understanding.</color>
 ?????:<color=red>And yet, here you are, powerless to save her.</color>
 ?????:<color=red>Look at the success of your last move!</color>
+<<Unlock>>
+<<wait 2>>
+<<CloseEnable>>
+Andrew:<i>The crucifix drives out these spawn of Hell!</i>
+<<CloseDisable>>
 ===
 
 title: Dialog_07
 position: -712,-395
 ---
+<<Lock>>
 <<Normal>>
 Alice:Agh… everything hurts so much.
 Andrew:Stay with me, Alice. 
 Alice: I…
 Andrew:<i>Oh no, she's passed out.</i>
 Andrew:<i>I have to prov<color=yellow>i</color>de medical care as fast as possible.</i>
+<<Unlock>>
+<<wait 2>>
+<<CloseEnable>>
+Andrew:<i>There's a first-aid kit in the box.</i>
+<<CloseDisable>>
 ===
 
 title: Dialog_08
 position: -712,-395
 ---
+<<Lock>>
 <<Demon>>
 ?????:<color=red>You did well with the mi</color><color=black><b>n</b></color><color=red>ions.</color>
 ?????:<color=red>But this one… this one is different.</color>
     -><i>Fight the demon</i>
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>I need to shut off the TV, now!</i>
+        <<CloseDisable>>
     -><i>Banish it by its true name</i>
 ===
 
 title: Dialog_09
 position: -712,-395
 ---
+<<Lock>>
 <<Demon>>
 ?????:<color=red>You're really getting on my </color><color=black><b>n</b></color><color=red>erves!</color>
 ?????:<color=red>Take him, my acolytes!</color>
 ?????:<color=red>AAARRRGGHHHH!!!!!</color>
     -><i>Fight the acolytes</i>
+        <<Unlock>>
+        <<wait 2>>
+        <<CloseEnable>>
+        Andrew:<i>Holy water will vanquish them!</i>
+        <<CloseDisable>>
     -><i>Banish it by its true name</i>
 ===
 
 title: Dialog_Phone
 position: -712,-395
 ---
+<<Lock>>
 <<Normal>>
 Andrew: Hello? Here is Father Andrew. 
 Developer: A fine little degenerate, aren't you?
@@ -145,6 +231,8 @@ Developer: Choose the horny option in a horror game for a game jam.
 Developer: Not much to see here for you, I'm afraid.
 Developer: Maybe you should think again about what kind of game you're playing here.
     -><i>Hang up.</i>
+        <<Unlock>>
     ->What is a game jam?
     Narrator: <i>The call ends abruptly, leaving Andrew in silence.</i>
+        <<Unlock>>
 ===
