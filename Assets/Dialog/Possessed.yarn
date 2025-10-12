@@ -206,6 +206,7 @@ position: -712,-395
 title: Dialog_09
 position: -712,-395
 ---
+<<declare $true_name = "" as string>>
 <<Lock>>
 <<Demon>>
 ?????:<color=red>You're really getting on my </color><color=black><b>n</b></color><color=red>erves!</color>
@@ -218,6 +219,19 @@ position: -712,-395
         Andrew:<i>Holy water will vanquish them!</i>
         <<CloseDisable>>
     -><i>Banish it by its true name</i>
+        <<Unlock>>
+        <<Input "$true_name">>
+        <<if $true_name is "Putin">>
+            <<wait 2>>
+            <<CloseEnable>>
+            Andrew:<i>By the power of Christ, I command you to leave this place, Putin!</i>
+            <<CloseDisable>>
+        <<else>>
+            <<wait 2>>
+            <<CloseEnable>>
+            Andrew:<i>Holy water will vanquish them!</i>
+            <<CloseDisable>>
+        <<endif>>
 ===
 
 title: Dialog_Phone

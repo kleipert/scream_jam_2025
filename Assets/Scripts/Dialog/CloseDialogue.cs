@@ -1,4 +1,3 @@
-using StarterAssets;
 using UnityEngine;
 using Yarn.Unity;
 
