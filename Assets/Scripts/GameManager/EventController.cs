@@ -25,7 +25,7 @@ namespace GameManager
             // HALLO LEON. VERGANGENHEITS-KEVIN HIER!
             // HIER KANNST DU EINFACH DEIN EVENT STARTEN, DASS DU GERADE ENTWICKELST, EINFACH DIE NAECHSTE ZEILE AENDERN!
             // GANZ LIEBE GRUESSE, LANG LEBE PROF DR. BLICK, AUF DAS ER MIR EINE EINFACHE ANALYSIS KLAUSUR GOENNT!
-            StartEvent(Data.Events.GhostsAttack);
+            //StartEvent(Data.Events.GhostsAttack);
         }
 
         private EventBase GetEventFromEnum(Data.Events eventToStart)

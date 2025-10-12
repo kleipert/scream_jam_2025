@@ -21,12 +21,14 @@ Andrew:Leave the girl and return to the pit that spawned you.
 <<Normal>>
     ->In the name of the Lord, release the girl, demon.
         <<Unlock>>
+        <<Call 1>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>Quick, I need to take cover!</i>
         <<CloseDisable>>
     -> Take me, and spare the girl.
         <<Unlock>>
+        <<Call 0>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>I, I feel awful, I need the purifying wine.</i>
@@ -54,12 +56,14 @@ Andrew:The Lord answers every one of His children!
 <<Normal>>
     ->You will not tempt me, demon. Leave this place at once!
         <<Unlock>>
+        <<Call 3>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>I need to quickly cleanse the air with incense.</i>
         <<CloseDisable>>
     ->Maybe a little?
         <<Unlock>>
+        <<Call 2>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>Who calls at a time like this?</i>
@@ -81,12 +85,14 @@ Andrew:He abandons none of His children!
 <<Normal>>
     ->Tremble? After such a pathetic little move?
         <<Unlock>>
+        <<Call 5>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>Hurry! I need the Holy Bible to weaken it!</i>
         <<CloseDisable>>
     -><i>I must find a way to weaken the demon.</i>
         <<Unlock>>
+        <<Call 4>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>The music box looks suspicious.</i>
@@ -103,12 +109,14 @@ position: -712,-395
 <<Normal>>
     ->Nothing can shake me, my faith stands firmer than ever.
         <<Unlock>>
+        <<Call 7>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>Quick, I have to wipe off the banishing circles.</i>
         <<CloseDisable>>
     -><i>I… I'm at a loss.</i>
         <<Unlock>>
+        <<Call 6>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>What… is this place?</i>
@@ -128,12 +136,14 @@ Alice:Agh… it hurts… I can feel it coming back.
 ?????:<color=red>Thou shalt not be rid of me so soon.</color>
     ->Our Father which art in heaven...
         <<Unlock>>
+        <<Call 8>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>I have to destroy the portal using a chalk banishing circle!</i>
         <<CloseDisable>>
     ->Has it not silenced you yet?
         <<Unlock>>
+        <<Call 9>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>I need to quickly clean my face.</i>
@@ -148,6 +158,7 @@ position: -712,-395
 Andrew:<i>In the name of the Fa<color=yellow>t</color>her, what is happening here?</i>
 Andrew:<i>I need to tie her down before she injures herself.</i>
 <<Unlock>>
+<<Call 10>>
 <<wait 2>>
 <<CloseEnable>>
 Andrew:<i>Quick, the ropes!</i>
@@ -164,9 +175,10 @@ position: -712,-395
 ?????:<color=red>And yet, here you are, powerless to save her.</color>
 ?????:<color=red>Look at the success of your last move!</color>
 <<Unlock>>
+<<Call 11>>
 <<wait 2>>
 <<CloseEnable>>
-Andrew:<i>The crucifix drives out these spawn of Hell!</i>
+Andrew:<i>The crucifix drives out these spawns of Hell!</i>
 <<CloseDisable>>
 ===
 
@@ -181,6 +193,7 @@ Alice: I…
 Andrew:<i>Oh no, she's passed out.</i>
 Andrew:<i>I have to prov<color=yellow>i</color>de medical care as fast as possible.</i>
 <<Unlock>>
+<<Call 12>>
 <<wait 2>>
 <<CloseEnable>>
 Andrew:<i>There's a first-aid kit in the box.</i>
@@ -196,11 +209,27 @@ position: -712,-395
 ?????:<color=red>But this one… this one is different.</color>
     -><i>Fight the demon</i>
         <<Unlock>>
+        <<Call 13>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>I need to shut off the TV, now!</i>
         <<CloseDisable>>
     -><i>Banish it by its true name</i>
+        <<Unlock>>
+        <<Input "$true_name">>
+        <<if $true_name is "Putin">>
+            <<Call 15>>
+            <<wait 2>>
+            <<CloseEnable>>
+            Andrew:<i>By the power of Christ, I command you to leave this place, Putin!</i>
+            <<CloseDisable>>
+        <<else>>
+            <<Call 13>>
+            <<wait 2>>
+            <<CloseEnable>>
+            Andrew:<i>Holy water will vanquish them!</i>
+            <<CloseDisable>>
+        <<endif>>
 ===
 
 title: Dialog_09
@@ -214,6 +243,7 @@ position: -712,-395
 ?????:<color=red>AAARRRGGHHHH!!!!!</color>
     -><i>Fight the acolytes</i>
         <<Unlock>>
+        <<Call 14>>
         <<wait 2>>
         <<CloseEnable>>
         Andrew:<i>Holy water will vanquish them!</i>
@@ -222,11 +252,13 @@ position: -712,-395
         <<Unlock>>
         <<Input "$true_name">>
         <<if $true_name is "Putin">>
+            <<Call 15>>
             <<wait 2>>
             <<CloseEnable>>
             Andrew:<i>By the power of Christ, I command you to leave this place, Putin!</i>
             <<CloseDisable>>
         <<else>>
+            <<Call 14>>
             <<wait 2>>
             <<CloseEnable>>
             Andrew:<i>Holy water will vanquish them!</i>
