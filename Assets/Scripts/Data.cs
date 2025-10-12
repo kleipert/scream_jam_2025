@@ -18,7 +18,7 @@ public static class Data
     }
 
     public enum Events
-    {
+    {   
         PlayerPossesed = 0,
         DemonThrowsItems = 1,
         PhoneRings = 2,
@@ -35,7 +35,7 @@ public static class Data
         TelevisionTurnsOn = 13,
         SatanistsAttack = 14,
         TrueName = 15,
-        None = 16
+        None = 16,
     }
 
     public static readonly Dictionary<Events, PlayerItems> EventsToItemsMap = new Dictionary<Events, PlayerItems>
