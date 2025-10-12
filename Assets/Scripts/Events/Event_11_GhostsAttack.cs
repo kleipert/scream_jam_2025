@@ -39,12 +39,6 @@ namespace Events
                     ghost.SetActive(true);
 
                 ghostsSpawned = true;
-                StartCoroutine(Wait());
-
-                IEnumerator Wait()
-                {
-                    yield return new WaitForSeconds(2);
-                }
             }
             
             var ghostToAttack = Random.Range(0, ghosts.Count);
