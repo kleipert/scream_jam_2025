@@ -9,10 +9,6 @@ public class CheckDialog : MonoBehaviour
     [SerializeField] private StarterAssetsInputs starterInputs;
     [SerializeField] private PlayerInput playerInput;
     
-    [SerializeField] private string playerMap = "Player";
-    [SerializeField] private string uiMap     = "UI";
-    [SerializeField] private bool switchActionMap = true;
-    
     void Awake()
     {
         if (!dialogueRunner) dialogueRunner = FindFirstObjectByType<DialogueRunner>();
@@ -36,19 +32,14 @@ public class CheckDialog : MonoBehaviour
 
     private void SetDialogueActive(bool active)
     {
-        if (starterInputs != null) {
+        if (starterInputs != null) 
+        {
             starterInputs.cursorInputForLook = !active;
             starterInputs.cursorLocked       = !active;
+            starterInputs.canMove = !active;
         }
         Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible   = active;
-
-        if (switchActionMap && playerInput != null) {
-            var target = active ? uiMap : playerMap;
-            if (!string.IsNullOrEmpty(target) && playerInput.currentActionMap?.name != target) {
-                playerInput.SwitchCurrentActionMap(target);
-            }
-        }
     }
 }
 

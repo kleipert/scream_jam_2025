@@ -58,6 +58,23 @@ public static class Data
         {Events.TrueName, PlayerItems.None},
         {Events.None, PlayerItems.None},
     };
+    
+    public static readonly Dictionary<Events, string> EventsToDialog= new Dictionary<Events, string>
+    {
+        {Events.None, "StartingDialog"},
+        {Events.PlayerPossesed, "Dialog_01"},
+        {Events.DemonThrowsItems, "Dialog_02"},
+        {Events.PhoneRings, "Dialog_03"},
+        {Events.UnholyFog, "Dialog_04"},
+        {Events.FindCursedItem, "Dialog_04"},
+        {Events.DemonFlies, "Dialog_05"},
+        {Events.LightsOut, "Dialog_06"},
+        {Events.PortalOpens, "Dialog_06"},
+        {Events.DemonThrowsUp, "Dialog_07"},
+        {Events.TieDownDemon, "Dialog_07"},
+        {Events.GhostsAttack, "Dialog_08"},
+        {Events.FirstAidForDemon, "Dialog_09"},
+    };
 }
 
 
