@@ -3,6 +3,7 @@ using Enemies;
 using GameManager;
 using JetBrains.Annotations;
 using StarterAssets;
+using Unity.VisualScripting;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -39,6 +40,11 @@ namespace Player
         private bool _pentagramAvailable = false;
         [CanBeNull] private GameObject _lastPentagram;
         private uint pentagramsCnt = 5;
+        
+        // Event 08 Variables
+        [SerializeField] private GameObject[] circles;
+        private uint _circlesCnt;
+        private bool _endEvent08 = true;
         
         // Event 12 Variables 
         private bool _canHeal;
@@ -113,6 +119,21 @@ namespace Player
                 _pentagramAvailable = false;
             }
             
+            // Event 08
+            if (EventController.instance.GetActiveEvent() == Data.Events.PortalOpens)
+            {
+                foreach (var circle in circles)
+                {
+                    circle.SetActive(true);
+                }
+                
+                if (_circlesCnt == 4 && _endEvent08)
+                {
+                    StartCoroutine(EndCircle());
+                    _endEvent08 = false;
+                }    
+            }
+            
             // Event 12
             if (EventController.instance.GetActiveEvent() == Data.Events.FirstAidForDemon)
             {
@@ -159,6 +180,23 @@ namespace Player
         {
             yield return new WaitForSeconds(2f);
             _isFlying = true;
+        }
+
+        private IEnumerator EndCircle()
+        {
+            yield return new WaitForSeconds(2f);
+            
+            foreach (var circle in circles)
+            {
+                for (int i = 0; i < circle.transform.childCount; i++)
+                {
+                    circle.transform.GetChild(i).gameObject.SetActive(false);
+                }
+                
+                circle.SetActive(false);
+            }
+            
+            EventController.instance.StopCurrentEvent();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -244,6 +282,18 @@ namespace Player
                     possessedWoman.transform.position += Vector3.down * (flyingSpeed * 2 * Time.deltaTime);
                 }
             }
+            
+            // Event 08
+            if (other.CompareTag("Event_08_Circle"))
+            {
+                if (_input.interact && PlayerItemController.instance.hasItem)
+                {
+                    for (int i = 0; i < other.transform.childCount; i++)
+                    {
+                        other.transform.GetChild(i).gameObject.SetActive(true);
+                    }
+                }
+            }
         }
 
         public void SetActiveItem(Data.PlayerItems item)
@@ -264,7 +314,10 @@ namespace Player
                 item.gameObject.SetActive(false);
             }
         }
-    }
 
-    
+        public void CircleCntIncrease()
+        {
+            _circlesCnt++;
+        }
+    }
 }
