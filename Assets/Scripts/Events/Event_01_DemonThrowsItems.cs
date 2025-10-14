@@ -25,6 +25,10 @@ namespace Events
         private IEnumerator DelayStart()
         {
             yield return new WaitForSeconds(2f);
+            foreach (var item in throwableItems)
+            {
+                item.GetComponent<Event01ThrowableItem>().enabled = true;
+            }
             _readyToThrow = true;
         }
 

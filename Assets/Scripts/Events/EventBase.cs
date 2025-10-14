@@ -8,17 +8,20 @@ namespace Events
         [SerializeField] protected Data.Events Event;
         [SerializeField] protected Data.PlayerItems Item;
         [SerializeField] protected bool EventDone = false;
+        [SerializeField] protected bool EventStarted = false;
         
 
         public virtual void StartEvent()
         {
             this.gameObject.SetActive(true);
             EventController.instance.isEventActive = true;
+            EventStarted = true;
         }
         
         public virtual void StopEvent()
         {
             EventController.instance.isEventActive = false;
+            EventStarted = false;
             EventDone = true;
             PlayerItemController.instance.ClearPlayerItem();
             this.gameObject.SetActive(false);
