@@ -4,7 +4,6 @@ using Events;
 using GameManager;
 using JetBrains.Annotations;
 using StarterAssets;
-using Unity.VisualScripting;
 using UnityEngine;
 using Yarn.Unity;
 
@@ -13,6 +12,7 @@ namespace Player
     public class PlayerInteraction : MonoBehaviour
     {
         [SerializeField] private GameObject[] playerItems;
+        [SerializeField] private GameObject mainCamera;
         private StarterAssetsInputs _input;
         private bool _pickupAvailable = false;
         
@@ -53,6 +53,13 @@ namespace Player
         
         // Event 12 Variables 
         private bool _canHeal;
+        
+        // Event 14 Variables
+        [SerializeField] private GameObject holyWaterPrefab;
+        [SerializeField] private GameObject holyWaterThrowPos;
+        private float _holyWaterThrowCooldownBase = 3f;
+        private float _holyWaterThrowCooldownCurrent = 3f;
+        
         
         void Awake()
         {
@@ -157,6 +164,23 @@ namespace Player
                 if (_canHeal && _input.interact && PlayerItemController.instance.hasItem)
                     EventController.instance.StopCurrentEvent();
             }
+            
+            // Event 14
+            if (EventController.instance.GetActiveEvent() == Data.Events.SatanistsAttack &&
+                PlayerItemController.instance.hasItem &&
+                _input.interact &&
+                _holyWaterThrowCooldownCurrent <= 0)
+            {
+                _holyWaterThrowCooldownCurrent = _holyWaterThrowCooldownBase;
+                ThrowHolyWater();
+            }
+
+            _holyWaterThrowCooldownCurrent -= Time.deltaTime;
+        }
+
+        private void ThrowHolyWater()
+        {
+            var holyWater = Instantiate(holyWaterPrefab, holyWaterThrowPos.transform.position, holyWaterThrowPos.transform.rotation);
         }
 
         private IEnumerator CleanseFog()

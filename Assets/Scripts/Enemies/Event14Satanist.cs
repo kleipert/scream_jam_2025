@@ -28,20 +28,18 @@ namespace Enemies
                     AttackPlayer();
                     _attackCooldownCurrent = _attackCooldownBase;
                 }
-
                 _attackCooldownCurrent -= Time.deltaTime;
             }
         }
 
         public void AttackPlayer()
         {
-            
+            eventObject?.GetComponent<Event_14_SatanistsAttack>()?.IncreaseAttackCount();
         }
 
         private void OnDestroy()
         {
-            //eventObject.GetComponent<Event_14_SatanistsAttack>().RemoveGhost(this.gameObject);
-            player.GetComponent<Event14PlayerData>().getsAttacked = false;
+            eventObject?.GetComponent<Event_14_SatanistsAttack>()?.RemoveSatanist(this.gameObject);
         }
     }
 }
