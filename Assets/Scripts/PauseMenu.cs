@@ -4,89 +4,163 @@ using UnityEngine;
 using UnityEngine.Audio;
 using StarterAssets;
 using TMPro;
-using UnityEngine.Serialization;
 using Yarn.Unity;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] StarterAssetsInputs input;
-    [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject settingsMenu;
+    [SerializeField] private StarterAssetsInputs input;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject settingsMenu;
     [SerializeField] private TMP_Text fovText;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private DialogueRunner dialogueRunner;
-    
+    [SerializeField] private AudioMixer audioMixer;
+
     private bool _settingsOpen;
-    
-    public AudioMixer audioMixer;
+    private bool _isPaused;
 
     void Start()
     {
-        pauseMenu.SetActive(false);
-        settingsMenu.SetActive(false);
+        SafeSetActive(pauseMenu, false);
+        SafeSetActive(settingsMenu, false);
+        ApplyCursor(false);
+    }
+
+    void OnDisable()
+    {
+        if (_isPaused)
+        {
+            Time.timeScale = 1f;
+            ApplyCursor(false);
+            _isPaused = false;
+        }
     }
 
     void Update()
     {
-        if (input.escape && !_settingsOpen && !dialogueRunner.IsDialogueRunning)
+        if (input.escape)
         {
-            pauseMenu.SetActive(true);
-            input.cursorLocked = false;
-            input.cursorInputForLook = false;
-            Cursor.lockState = CursorLockMode.None;
-            Time.timeScale = 0;
+            HandleEscapePress();
+            input.escape = false; 
         }
         
-        fovText.text = "FoV: " + mainCamera.fieldOfView;
+        if (fovText && virtualCamera != null)
+        {
+            float fov = virtualCamera.m_Lens.FieldOfView;
+            fovText.text = $"FoV: {Mathf.RoundToInt(fov)}";
+        }
+    }
+
+    private void HandleEscapePress()
+    {
+        if (dialogueRunner && dialogueRunner.IsDialogueRunning && !_isPaused)
+            return;
+
+        if (_settingsOpen)
+        {
+            Back(); 
+        }
+        else
+        {
+            if (_isPaused) Resume();
+            else Pause();
+        }
+    }
+
+    private void Pause()
+    {
+        SafeSetActive(pauseMenu, true);
+        SafeSetActive(settingsMenu, false);
+        _settingsOpen = false;
+        _isPaused = true;
+
+        Time.timeScale = 0f;
+        StartCoroutine(UnlockCursorRealtime());
     }
 
     public void SettingsMenu()
     {
-        pauseMenu.SetActive(false);
-        settingsMenu.SetActive(true);
+        if (!_isPaused) Pause();
+
+        SafeSetActive(pauseMenu, false);
+        SafeSetActive(settingsMenu, true);
         _settingsOpen = true;
-        StartCoroutine(UnlockCursor());
+        
+        StartCoroutine(UnlockCursorRealtime());
     }
 
     public void Resume()
     {
-        pauseMenu.SetActive(false);
-        settingsMenu.SetActive(false);
-        input.cursorLocked = true;
-        input.cursorInputForLook = true;
-        Cursor.lockState = CursorLockMode.Locked;
-        Time.timeScale = 1;
+        SafeSetActive(pauseMenu, false);
+        SafeSetActive(settingsMenu, false);
+        _settingsOpen = false;
+        _isPaused = false;
+
+        Time.timeScale = 1f;
+        ApplyCursor(false);
+    }
+
+    public void Back()
+    {
+        SafeSetActive(settingsMenu, false);
+        SafeSetActive(pauseMenu, true);
+        _settingsOpen = false;
+        StartCoroutine(UnlockCursorRealtime());
     }
 
     public void Quit()
     {
         Application.Quit();
     }
-
-    public void Back()
+    
+    public void SetVolume(float linearVolume)
     {
-        settingsMenu.SetActive(false);
-        pauseMenu.SetActive(true);
-        _settingsOpen = false;
-        StartCoroutine(UnlockCursor());
-    }
-
-    public void SetVolume(float volume)
-    {
-        audioMixer.SetFloat("volume", volume);
+        audioMixer.SetFloat("volume", linearVolume);
     }
     
     public void SetFoV(float fov)
     {
-        virtualCamera.m_Lens.FieldOfView = fov;
+        if (virtualCamera != null)
+        {
+            var lens = virtualCamera.m_Lens;
+            lens.FieldOfView = fov;
+            virtualCamera.m_Lens = lens; 
+        }
     }
 
-    private IEnumerator UnlockCursor()
+    private IEnumerator UnlockCursorRealtime()
     {
-        yield return new WaitForSeconds(0.1f);
-        Cursor.lockState = CursorLockMode.None;
-        input.cursorLocked = false;
-        input.cursorInputForLook = false;
+        yield return new WaitForSecondsRealtime(0.1f);
+        ApplyCursor(true);
+    }
+
+    private void ApplyCursor(bool unlockedVisible)
+    {
+        if (unlockedVisible)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            if (input)
+            {
+                input.cursorLocked = false;
+                input.cursorInputForLook = false;
+            }
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            if (input)
+            {
+                input.cursorLocked = true;
+                input.cursorInputForLook = true;
+            }
+        }
+    }
+
+    private static void SafeSetActive(GameObject go, bool active)
+    {
+        if (go && go.activeSelf != active) go.SetActive(active);
     }
 }
