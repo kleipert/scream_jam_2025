@@ -9,6 +9,7 @@ public class Event01ThrowableItem : MonoBehaviour
     private float throwSpeed = 10f;
     private bool isThrown = false;
     [SerializeField] private GameObject eventObject;
+    [SerializeField] private AudioClip audioClip;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,11 +51,16 @@ public class Event01ThrowableItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(!other.CompareTag("Player"))
-            Destroy(this.gameObject);
+        if (!other.CompareTag("Player"))
+        {
+            SoundManager.Instance.PlaySound(audioClip,transform,3.0f);
+            Destroy(this.gameObject);    
+        }
+            
         else
         {
             // DO SOMETHING WITH PLAYER?
+            SoundManager.Instance.PlaySound(audioClip,transform,3.0f);
             Destroy(this.gameObject);
         }
     }

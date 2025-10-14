@@ -16,6 +16,10 @@ namespace Player
         private StarterAssetsInputs _input;
         private bool _pickupAvailable = false;
         
+        // Event_00 Variable
+        private bool _canDrink;
+        private bool _endEvent00;
+        
         // Event 02 Variables
         [SerializeField] private DialogueRunner dialogueRunner;
         private bool _phoneAvailable = false;
@@ -77,8 +81,13 @@ namespace Player
             
             // Event 00
             if (EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed && _input.interact)
-            { 
-                StartCoroutine(DrinkWine());
+            {
+                StartCoroutine(WaitForWine());
+                if (_canDrink && !_endEvent00)
+                {
+                    _endEvent00 = true;
+                    StartCoroutine(DrinkWine());
+                }
             }
             
             //Event 02
@@ -185,11 +194,17 @@ namespace Player
             }
         }
 
+        private IEnumerator WaitForWine()
+        {
+            yield return new WaitForSeconds(1f);
+            _canDrink = true;
+        }
+
         private IEnumerator DrinkWine()
         {
             //GameObject.Find("ItemTowel").GetComponent<Animator>().SetTrigger("DrinkWine");
             yield return new WaitForSeconds(2f);
-            _input.invert = !_input.invert;
+            _input.invert = false;
             EventController.instance.StopCurrentEvent();
         }
 
