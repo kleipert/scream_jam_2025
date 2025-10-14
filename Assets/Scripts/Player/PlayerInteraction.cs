@@ -1,5 +1,6 @@
 using System.Collections;
 using Enemies;
+using Events;
 using GameManager;
 using JetBrains.Annotations;
 using StarterAssets;
@@ -45,6 +46,10 @@ namespace Player
         [SerializeField] private GameObject[] circles;
         private uint _circlesCnt;
         private bool _endEvent08 = true;
+        
+        // Event 10 Variables
+        private bool _inTieDownRangeLeft = false;
+        private bool _inTieDownRangeRight = false;
         
         // Event 12 Variables 
         private bool _canHeal;
@@ -132,6 +137,18 @@ namespace Player
                     StartCoroutine(EndCircle());
                     _endEvent08 = false;
                 }    
+            }
+            
+            // Event 10
+            if (_inTieDownRangeLeft && _input.interact)
+            {
+                GameObject.Find("Event10").GetComponent<Event_10_TieDemonDown>().TieDownLeft();
+            }
+            
+            // Event 10
+            if (_inTieDownRangeRight && _input.interact)
+            {
+                GameObject.Find("Event10").GetComponent<Event_10_TieDemonDown>().TieDownRight();
             }
             
             // Event 12
@@ -233,6 +250,18 @@ namespace Player
                 _lastPentagram = other.gameObject;
             }
             
+            // Event 10 Ghost Interact
+            if (other.CompareTag("Event_10_BedAnchorLeft"))
+            {
+                _inTieDownRangeLeft = true;
+            }
+            
+            // Event 10 Ghost Interact
+            if (other.CompareTag("Event_10_BedAnchorRight"))
+            {
+                _inTieDownRangeRight = true;
+            }
+            
             // Event 11 Ghost Interact
             if (other.CompareTag("Event_11_Ghost"))
             {
@@ -264,6 +293,18 @@ namespace Player
             {
                 _pentagramAvailable = false;
                 _lastPentagram = null;
+            }
+            
+            // Event 10 Ghost Interact
+            if (other.CompareTag("Event_10_BedAnchorLeft"))
+            {
+                _inTieDownRangeLeft = false;
+            }
+            
+            // Event 10 Ghost Interact
+            if (other.CompareTag("Event_10_BedAnchorRight"))
+            {
+                _inTieDownRangeRight = false;
             }
 
             if (other.CompareTag("Event_12_Heal"))

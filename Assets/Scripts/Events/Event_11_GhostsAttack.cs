@@ -14,6 +14,8 @@ namespace Events
 
         [SerializeField] private List<GameObject> ghosts;
         [SerializeField] private GameObject player;
+        [SerializeField] private GameObject ghostsParentObj;
+
         private Event11PlayerData playerData;
         private bool ghostsSpawned = false;
 
@@ -31,10 +33,11 @@ namespace Events
 
         private void Update()
         {
-            if (!PlayerItemController.instance.hasItem) return;
+            if (!PlayerItemController.instance.hasItem || !EventStarted) return;
 
             if (!ghostsSpawned)
             {
+                ghostsParentObj.SetActive(true);
                 foreach (var ghost in ghosts)
                     ghost.SetActive(true);
 
