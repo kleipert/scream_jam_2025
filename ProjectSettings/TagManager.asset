@@ -14,6 +14,7 @@ TagManager:
   - Event_04_Cursed
   - Event_05_Flying
   - Event_12_Heal
+  - Event_08_Circle
   layers:
   - Default
   - TransparentFX

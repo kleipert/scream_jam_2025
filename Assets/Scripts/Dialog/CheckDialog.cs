@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Yarn.Unity;
 using StarterAssets;
+using Cinemachine;
 
 public class CheckDialog : MonoBehaviour
 {
     [SerializeField] private DialogueRunner dialogueRunner;
     [SerializeField] private StarterAssetsInputs starterInputs;
     [SerializeField] private PlayerInput playerInput;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
     
     void Awake()
     {
@@ -38,6 +40,12 @@ public class CheckDialog : MonoBehaviour
             starterInputs.cursorLocked       = !active;
             starterInputs.canMove = !active;
         }
+
+        if (!active)
+        {
+            virtualCamera.LookAt = null;
+        }
+        
         Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
         Cursor.visible   = active;
     }
