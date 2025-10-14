@@ -19,6 +19,7 @@ TagManager:
   - Event_10_BedAnchorLeft
   - Event_14_Satanist
   - HolyWaterBottle
+  - Event_13_FlickerTV
   layers:
   - Default
   - TransparentFX

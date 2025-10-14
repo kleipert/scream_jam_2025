@@ -54,6 +54,9 @@ namespace Player
         // Event 12 Variables 
         private bool _canHeal;
         
+        // Event 13 Variables
+        private bool _inTVRange = false;
+        
         // Event 14 Variables
         [SerializeField] private GameObject holyWaterPrefab;
         [SerializeField] private GameObject holyWaterThrowPos;
@@ -163,6 +166,14 @@ namespace Player
             {
                 if (_canHeal && _input.interact && PlayerItemController.instance.hasItem)
                     EventController.instance.StopCurrentEvent();
+            }
+            
+            // Event 13
+            if (_inTVRange && 
+                EventController.instance.GetActiveEvent() == Data.Events.TelevisionTurnsOn && 
+                _input.interact)
+            {
+                GameObject.Find("Event13")?.GetComponent<Event_13_TelevisionTurnsOn>()?.TurnOffTV();
             }
             
             // Event 14
@@ -298,6 +309,12 @@ namespace Player
             {
                 _canHeal = true;
             }
+            
+            // Event 12 
+            if (other.CompareTag("Event_13_FlickerTV") && EventController.instance.GetActiveEvent() == Data.Events.TelevisionTurnsOn)
+            {
+                _inTVRange = true;
+            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -334,6 +351,12 @@ namespace Player
             if (other.CompareTag("Event_12_Heal"))
             {
                 _canHeal = false;
+            }
+            
+            // Event 12 
+            if (other.CompareTag("Event_13_FlickerTV") && EventController.instance.GetActiveEvent() == Data.Events.TelevisionTurnsOn)
+            {
+                _inTVRange = false;
             }
         }
 
