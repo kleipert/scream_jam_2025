@@ -4,7 +4,6 @@ namespace Player
 {
     public class Event14PlayerData : MonoBehaviour
     {
-        public bool getsAttacked = false;
         public uint satanistsKilled = 0;
         public bool allSatanistsKilled = false;
 
