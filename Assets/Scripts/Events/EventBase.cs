@@ -21,6 +21,7 @@ namespace Events
         public virtual void StopEvent()
         {
             EventController.instance.isEventActive = false;
+            EventController.instance.lastEvent = Event;
             EventStarted = false;
             EventDone = true;
             PlayerItemController.instance.ClearPlayerItem();

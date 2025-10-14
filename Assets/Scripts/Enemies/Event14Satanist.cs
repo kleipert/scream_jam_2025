@@ -7,15 +7,15 @@ namespace Enemies
 {
     public class Event14Satanist : MonoBehaviour
     {
-        private Vector3 _startPos;
         private NavMeshAgent _agent;
         public bool isAttacking = false;
         [SerializeField] private GameObject player;
         [SerializeField] private GameObject eventObject;
+        private float _attackCooldownBase = 3f;
+        private float _attackCooldownCurrent = 3f;
         private void Start()
         {
             _agent = GetComponent<NavMeshAgent>();
-            _startPos = transform.position;
         }
 
         private void Update()
@@ -23,13 +23,19 @@ namespace Enemies
             if (isAttacking)
             {
                 _agent.destination = player.transform.position;
-                if (Vector3.Distance(transform.position, player.transform.position) <= 1)
+                if (Vector3.Distance(transform.position, player.transform.position) <= 1 && _attackCooldownCurrent <= 0f)
                 {
-                    _agent.destination = _startPos;
-                    isAttacking = false;
-                    player.GetComponent<Event14PlayerData>().getsAttacked = false;
+                    AttackPlayer();
+                    _attackCooldownCurrent = _attackCooldownBase;
                 }
+
+                _attackCooldownCurrent -= Time.deltaTime;
             }
+        }
+
+        public void AttackPlayer()
+        {
+            
         }
 
         private void OnDestroy()

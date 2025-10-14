@@ -81856,11 +81856,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4926025588815940, guid: 33aaecbb19e68b746b967ea22a0f3036, type: 3}
   m_PrefabInstance: {fileID: 1315337016}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1317054571 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1243111391846360, guid: ab4a2542959e97f428b74613fd6c3cd3, type: 3}
-  m_PrefabInstance: {fileID: 767853509}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1321361135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135452,7 +135447,7 @@ MonoBehaviour:
   Item: 2
   EventDone: 0
   EventStarted: 0
-  _door: {fileID: 1317054571}
+  _door: {fileID: 0}
   satanists: []
   player: {fileID: 0}
   satanitsParentObj: {fileID: 0}
@@ -135593,7 +135588,7 @@ MonoBehaviour:
   - {fileID: 724417909}
   - {fileID: 994763929}
   player: {fileID: 777975600}
-  ghostsParentObj: {fileID: 559871923}
+  ghostsParentObj: {fileID: 0}
 --- !u!1 &2611483054548308660
 GameObject:
   m_ObjectHideFlags: 0
@@ -136126,23 +136121,8 @@ MonoBehaviour:
   Item: 9
   EventDone: 0
   EventStarted: 0
-  _player: {fileID: 777975600}
-  throwableItems:
-  - {fileID: 493735965}
-  - {fileID: 855281005}
-  - {fileID: 146247932}
-  - {fileID: 761837448}
-  - {fileID: 1002408544}
-  - {fileID: 1512840060}
-  - {fileID: 1476284545}
-  - {fileID: 1075501924}
-  - {fileID: 1593307297}
-  - {fileID: 1924136476}
-  - {fileID: 166973446}
-  - {fileID: 1458115400}
-  - {fileID: 148145164}
-  - {fileID: 1826810028}
-  - {fileID: 1424057487}
+  _player: {fileID: 0}
+  throwableItems: []
 --- !u!4 &8597326126319769729
 Transform:
   m_ObjectHideFlags: 0
