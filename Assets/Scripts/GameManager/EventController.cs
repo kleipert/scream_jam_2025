@@ -34,7 +34,7 @@ namespace GameManager
             //StartEvent(Data.Events.None);
             //lastEvent = Data.Events.None;
             // Testing
-            StartEvent(Data.Events.TelevisionTurnsOn);
+            StartEvent(Data.Events.PlayerTeleports);
         }
 
         private EventBase GetEventFromEnum(Data.Events eventToStart)
