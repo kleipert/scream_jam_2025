@@ -9,8 +9,12 @@ namespace Events
     {
         [SerializeField] private GameObject LeftLine;
         [SerializeField] private GameObject RightLine;
+        [SerializeField] private AudioClip clipTied;
         private bool isLeftTied = false;
         private bool isRightTied = false;
+        private bool _leftAudio;
+        private bool _rightAudio;
+        private bool _audioPlayed = true;
         
         public override void StartEvent()
         {
@@ -25,14 +29,20 @@ namespace Events
 
             if (isLeftTied)
             {
-                LeftLine.GetComponent<Event_10_Ropes>().Activate();
+                StartCoroutine(ActivateSound(true));
+                isLeftTied = false;
             }
             
             if (isRightTied)
             {
-                RightLine.GetComponent<Event_10_Ropes>().Activate();
+                StartCoroutine(ActivateSound(false));
+                isRightTied = false;
             }
-
+            
+            if (_leftAudio)
+                LeftLine.GetComponent<Event_10_Ropes>().Activate();
+            if (_rightAudio)
+                RightLine.GetComponent<Event_10_Ropes>().Activate();
             if (isRightTied && isLeftTied)
                 StartCoroutine(EndAfterDelay());
 
@@ -44,14 +54,28 @@ namespace Events
             StopEvent();
         }
 
+        private IEnumerator ActivateSound(bool kevin)
+        {
+            if (!_audioPlayed)
+                SoundManager.Instance.PlaySound(clipTied,transform,0.3f);
+            _audioPlayed  = true;
+            yield return new WaitForSeconds(2f);
+            if (kevin)
+                _leftAudio = true;
+            else
+                _rightAudio = true;
+        }
+
         public void TieDownRight()
         {
             isRightTied = true;
+            _audioPlayed = false;
         }
         
         public void TieDownLeft()
         {
             isLeftTied = true;
+            _audioPlayed = false;
         }
 
         public override void StopEvent()

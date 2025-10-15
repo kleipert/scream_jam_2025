@@ -15,9 +15,12 @@ namespace Events
         [SerializeField] private List<GameObject> ghosts;
         [SerializeField] private GameObject player;
         [SerializeField] private GameObject ghostsParentObj;
+        [SerializeField] private AudioClip ghostsSound;
+        [SerializeField] private AudioClip ghostSpawn;
 
         private Event11PlayerData playerData;
         private bool ghostsSpawned = false;
+        private bool _canAttack;
 
         public override void StartEvent()
         {
@@ -42,11 +45,14 @@ namespace Events
                     ghost.SetActive(true);
 
                 ghostsSpawned = true;
+                SoundManager.Instance.PlaySound(ghostSpawn,transform,0.2f);
             }
             
             var ghostToAttack = Random.Range(0, ghosts.Count);
+
+            StartCoroutine(StartAttack());
             
-            if(!playerData.getsAttacked && ghosts.Count > 0)
+            if(!playerData.getsAttacked && ghosts.Count > 0 && _canAttack)
                 AttackPlayer(ghostToAttack);
         }
 
@@ -54,6 +60,7 @@ namespace Events
         {
             playerData.getsAttacked = true;
             ghosts[ghostIdx].GetComponent<Event11Ghosts>().isAttacking = true;
+            SoundManager.Instance.PlaySound(ghostsSound,transform,0.3f);
         }
 
         public void RemoveGhost(GameObject ghost)
@@ -64,6 +71,12 @@ namespace Events
                 EventDone = true;
                 StopEvent();
             }
+        }
+
+        private IEnumerator StartAttack()
+        {
+            yield return new WaitForSeconds(3f);
+            _canAttack =  true;
         }
 
         public override void StopEvent()

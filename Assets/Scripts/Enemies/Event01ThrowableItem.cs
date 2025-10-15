@@ -10,6 +10,7 @@ public class Event01ThrowableItem : MonoBehaviour
     private bool isThrown = false;
     [SerializeField] private GameObject eventObject;
     [SerializeField] private AudioClip audioClip;
+    [SerializeField] private AudioClip audioClip2;
     
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,6 +47,7 @@ public class Event01ThrowableItem : MonoBehaviour
         var targetPos = new Vector3(position.x, position.y - .15f, position.z);
         transform.LookAt(targetPos);
         isThrown = true;
+        SoundManager.Instance.PlaySound(audioClip2,transform,0.5f,2.0f);
         
     }
 
@@ -53,14 +55,14 @@ public class Event01ThrowableItem : MonoBehaviour
     {
         if (!other.CompareTag("Player"))
         {
-            SoundManager.Instance.PlaySound(audioClip,transform,3.0f);
+            SoundManager.Instance.PlaySound(audioClip,transform,0.5f);
             Destroy(this.gameObject);    
         }
             
         else
         {
             // DO SOMETHING WITH PLAYER?
-            SoundManager.Instance.PlaySound(audioClip,transform,3.0f);
+            SoundManager.Instance.PlaySound(audioClip,transform,0.5f);
             Destroy(this.gameObject);
         }
     }

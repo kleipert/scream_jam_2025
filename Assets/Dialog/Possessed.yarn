@@ -12,11 +12,11 @@ Andrew: I understand. Let's take it one step at a time. First, can you tell me y
 <<Demon>>
 ?????:<color=red>My name, you wretched spawn? You can have it when you're kneeling and obeying.</color>
 <<Normal>>
-Andrew:So at last you show yourself as you are—hellspawn.
+Andrew:So at last you show yourself as you are hellspawn.
 Andrew:Leave the girl and return to the pit that spawned you.
 <<Demon>>
 ?????:<color=red>Do you truly believe you can stand against me?</color>
-?????:<color=red>Your faith is misplaced, </color><color=black><b>p</b></color><color=red>riest. I'm beyond your petty rituals and prayers.</color>
+?????:<color=red>Your faith is misplaced, </color><b>p</b><color=red>riest. I'm beyond your petty rituals and prayers.</color>
 ?????:<color=red>Trying to save her? Then offer yourself. You might prove the better vessel.</color>
 <<Normal>>
     ->In the name of the Lord, release the girl, demon.
@@ -50,7 +50,7 @@ Andrew:You will not harm her. I command you, in the name of the Lord, to leave t
 Andrew:The Lord answers every one of His children!
 <<Demon>>
 ?????:<color=red>And yet, here you are, powerless to save her.</color>
-?????:<color=red>I could give you things yo</color><color=black><b>u</b></color><color=red>r God never could.</color>
+?????:<color=red>I could give you things yo</color><b>u</b><color=red>r God never could.</color>
 ?????:<color=red>Power, knowledge,... sex.</color>
 ?????:<color=red>Doesn't my sexy body do it for you?</color>
 <<Normal>>
@@ -80,7 +80,7 @@ position: -712,-395
 Andrew:The Lord does not hide!
 Andrew:He abandons none of His children!
 <<Demon>>
-?????:<color=red>Then why are yo</color><color=black><b>u</b></color><color=red> so weak?</color>
+?????:<color=red>Then why are yo</color><b>u</b><color=red> so weak?</color>
 ?????:<color=red>Why do you tremble before me?</color>
 <<Normal>>
     ->Tremble? After such a pathetic little move?
@@ -104,7 +104,7 @@ position: -712,-395
 ---
 <<Lock>>
 <<Demon>>
-?????:<color=red>Enjoy your pleasant li</color><color=black><b>t</b></color><color=red>tle talk with my friend?</color>
+?????:<color=red>Enjoy your pleasant li</color><b>t</b><color=red>tle talk with my friend?</color>
 ?????:<color=red>He seems to have left you quite embarrassed.</color>
 <<Normal>>
     ->Nothing can shake me, my faith stands firmer than ever.
@@ -128,7 +128,7 @@ position: -712,-395
 ---
 <<Lock>>
 <<Demon>>
-?????:<color=red>Agh! You goddamn maggo</color><color=black><b>t</b></color><color=red>!</color>
+?????:<color=red>Agh! You goddamn maggo</color><b>t</b><color=red>!</color>
 <<Normal>>
 Alice:Please, help me, before it comes back.
 Andrew:My child, God does not forsake us, even in this hour of trial.
@@ -173,7 +173,7 @@ position: -712,-395
 ---
 <<Lock>>
 <<Demon>>
-?????:<color=red>Do you really bel</color><color=black><b>i</b></color><color=red>eve your pitiful efforts amount to anything?</color>
+?????:<color=red>Do you really bel</color><b>i</b><color=red>eve your pitiful efforts amount to anything?</color>
 ?????:<color=red>You're just a pawn in a game far beyond your understanding.</color>
 ?????:<color=red>And yet, here you are, powerless to save her.</color>
 ?????:<color=red>Look at the success of your last move!</color>
@@ -209,7 +209,7 @@ position: -712,-395
 ---
 <<Lock>>
 <<Demon>>
-?????:<color=red>You did well with the mi</color><color=black><b>n</b></color><color=red>ions.</color>
+?????:<color=red>You did well with the mi</color><b>n</b><color=red>ions.</color>
 ?????:<color=red>But this one… this one is different.</color>
 <<Normal>>
     -><i>Fight the demon</i>
@@ -243,7 +243,7 @@ position: -712,-395
 <<declare $true_name = "" as string>>
 <<Lock>>
 <<Demon>>
-?????:<color=red>You're really getting on my </color><color=black><b>n</b></color><color=red>erves!</color>
+?????:<color=red>You're really getting on my </color><b>n</b><color=red>erves!</color>
 ?????:<color=red>Take him, my acolytes!</color>
 ?????:<color=red>AAARRRGGHHHH!!!!!</color>
 <<Normal>>
@@ -285,6 +285,6 @@ Developer: Maybe you should think again about what kind of game you're playing h
     -><i>Hang up.</i>
         <<Unlock>>
     ->What is a game jam?
-    Narrator: <i>The call ends abruptly, leaving Andrew in silence.</i>
+        Narrator: <i>The call ends abruptly, leaving Andrew in silence.</i>
         <<Unlock>>
 ===
