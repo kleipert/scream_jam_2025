@@ -6,6 +6,7 @@ public class Event13Yokai : MonoBehaviour
 {
     [SerializeField] private float _growthSpeed = 1.25f;
     [SerializeField] private GameObject _player;
+    [SerializeField] private AudioSource yokaiSound;
     private NavMeshAgent _agent;
     
 
@@ -14,6 +15,7 @@ public class Event13Yokai : MonoBehaviour
     private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
+        yokaiSound.Play();
     }
 
     void Update()

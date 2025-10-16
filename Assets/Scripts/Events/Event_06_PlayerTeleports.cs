@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using StarterAssets;
 
 namespace Events
 {
@@ -7,6 +8,9 @@ namespace Events
     {
         [SerializeField] private GameObject playerTeleport;
         [SerializeField] private GameObject player;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private StarterAssetsInputs input;
+        
         public override void StartEvent()
         {
             base.StartEvent();
@@ -17,8 +21,11 @@ namespace Events
 
         private IEnumerator WaitWithTeleport()
         {
-            yield return new WaitForSeconds(3f);
+            audioSource.Play();
+            yield return new WaitForSeconds(2f);
+            input.canMove = false;
             player.transform.position = playerTeleport.transform.position;
+            input.canMove = true;
             StopEvent();
         }
 

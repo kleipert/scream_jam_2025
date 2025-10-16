@@ -245,12 +245,11 @@ position: -712,-395
 <<Demon>>
 ?????:<color=red>You're really getting on my </color><b>n</b><color=red>erves!</color>
 ?????:<color=red>Take him, my acolytes!</color>
-?????:<color=red>AAARRRGGHHHH!!!!!</color>
 <<Normal>>
     -><i>Fight the acolytes</i>
         <<Unlock>>
         <<Call 14>>
-        <<wait 2>>
+        <<wait 4>>
         <<CloseEnable>>
         Andrew:<i>Holy water will vanquish them!</i>
         <<CloseDisable>>

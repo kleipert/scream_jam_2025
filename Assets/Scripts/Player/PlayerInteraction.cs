@@ -21,6 +21,7 @@ namespace Player
         [Tooltip("Event07")] [SerializeField] private AudioClip audioClip07;
         [Tooltip("Event08")] [SerializeField] private AudioClip audioClip08;
         [Tooltip("Event12")] [SerializeField] private AudioClip audioClip12;
+        [Tooltip("Event14")] [SerializeField] private AudioClip audioClip14;
         
         private StarterAssetsInputs _input;
         private bool _pickupAvailable = false;
@@ -79,8 +80,8 @@ namespace Player
         // Event 14 Variables
         [SerializeField] private GameObject holyWaterPrefab;
         [SerializeField] private GameObject holyWaterThrowPos;
-        private float _holyWaterThrowCooldownBase = 3f;
-        private float _holyWaterThrowCooldownCurrent = 3f;
+        private float _holyWaterThrowCooldownBase = 2f;
+        private float _holyWaterThrowCooldownCurrent = 2f;
         
         
         void Awake()
@@ -371,7 +372,7 @@ namespace Player
                 _canHeal = true;
             }
             
-            // Event 12 
+            // Event 13
             if (other.CompareTag("Event_13_FlickerTV") && EventController.instance.GetActiveEvent() == Data.Events.TelevisionTurnsOn)
             {
                 _inTVRange = true;

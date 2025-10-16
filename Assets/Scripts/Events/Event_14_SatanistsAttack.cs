@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Enemies;
 using GameManager;
@@ -15,21 +16,25 @@ namespace Events
         [SerializeField] private List<GameObject> satanists;
         [SerializeField] private GameObject player;
         [SerializeField] private GameObject satanistsParentObj;
+        [SerializeField] private AudioSource audioScream;
+        [SerializeField] private AudioSource audioDoor;
 
         private Event14PlayerData playerData;
         private bool satanistsSpawned = false;
+        private bool doorOpen = false;
         private uint _atkCount = 0;
         public override void StartEvent()
         {
             base.StartEvent();
             Event = Data.Events.SatanistsAttack;
             Item = Data.EventsToItemsMap[Event];
-            _door.transform.Rotate(Vector3.up, _rotOpen);
+            audioScream.Play();
+            StartCoroutine(OpenDoor());
         }
         
         private void Update()
         {
-            if (!PlayerItemController.instance.hasItem || !EventStarted) return;
+            if (!doorOpen || !EventStarted) return;
 
             if (!satanistsSpawned)
             {
@@ -38,6 +43,7 @@ namespace Events
                 {
                     satanist.SetActive(true);
                     satanist.GetComponent<Event14Satanist>().isAttacking = true;
+                    satanist.GetComponent<AudioSource>().Play();
                 }
                 satanistsSpawned = true;
             }
@@ -59,6 +65,15 @@ namespace Events
         public override void StopEvent()
         {
             base.StopEvent();
+        }
+
+        IEnumerator OpenDoor()
+        {
+            yield return new WaitForSeconds(5f);
+            
+            _door.transform.Rotate(Vector3.up, _rotOpen);
+            audioDoor.Play();
+            doorOpen = true;
         }
     }
 }
