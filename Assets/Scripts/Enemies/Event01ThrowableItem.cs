@@ -27,9 +27,7 @@ public class Event01ThrowableItem : MonoBehaviour
             transform.position += Vector3.up * (flyingSpeed * Time.deltaTime);
 
         if (isThrown)
-        {
             transform.position += transform.forward * (throwSpeed * Time.deltaTime);
-        }
     }
 
     public void ThrowAtPlayer(Vector3 position)
@@ -53,22 +51,16 @@ public class Event01ThrowableItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        eventObject?.GetComponent<Event_01_DemonThrowsItems>()?.RemoveThrowable(this.gameObject);
         if (!other.CompareTag("Player"))
         {
             SoundManager.Instance.PlaySound(audioClip,transform,0.5f);
             Destroy(this.gameObject);    
         }
-            
         else
         {
-            // DO SOMETHING WITH PLAYER?
             SoundManager.Instance.PlaySound(audioClip,transform,0.5f);
             Destroy(this.gameObject);
         }
-    }
-
-    private void OnDestroy()
-    {
-        eventObject.GetComponent<Event_01_DemonThrowsItems>().RemoveThrowable(this.gameObject);
     }
 }

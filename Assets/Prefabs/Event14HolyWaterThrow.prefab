@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5111039555208148803}
   - component: {fileID: 9157322496294126529}
   - component: {fileID: 4858732168289441003}
+  - component: {fileID: -4066955233940817416}
   m_Layer: 0
   m_Name: Event14HolyWaterThrow
   m_TagString: HolyWaterBottle
@@ -98,6 +99,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-4066955233940817416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212269683935555444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13cf684da2b2cad40aa45f5d4260da93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Event_14_Bottle_Sound
+  audioClip: {fileID: 8300000, guid: 7f2014465e5595442ab72277dc49b743, type: 3}
 --- !u!1001 &7245098129975498926
 PrefabInstance:
   m_ObjectHideFlags: 0

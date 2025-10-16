@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace Player
@@ -8,6 +8,8 @@ namespace Player
         public float forwardSpeed = 8f;   // constant horizontal speed
         public float launchUpwardSpeed = 6f; // initial vertical kick
         public bool autoLaunchOnStart = false;
+        public bool CanDamage = true;
+        public int _hitCount = 0;
 
         Rigidbody rb;
         Vector3 flatForward;
@@ -25,6 +27,7 @@ namespace Player
         void Start()
         {
             if (autoLaunchOnStart) Launch();
+            _hitCount = 0;
         }
 
         public void Launch()
@@ -44,18 +47,20 @@ namespace Player
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Event_14_Satanist"))
+            if ((!other.CompareTag("Player") && !other.CompareTag("HolyWaterBottle")) ||
+                (other.CompareTag("Event_14_Satanist") && CanDamage))
             {
-                Destroy(other.gameObject);
-                Destroy(this.gameObject);
+                _hitCount++;
+                if(_hitCount == 1)
+                    StartCoroutine(WaitSoundAndDestroy());
             }
+        }
 
-            if (!other.CompareTag("Player") && !other.CompareTag("HolyWaterBottle"))
-            {
-                Debug.Log($"Collision found with {other.gameObject.name}");
-                Destroy(this.gameObject);
-                
-            }
+        private IEnumerator WaitSoundAndDestroy()
+        {
+            GetComponent<Event_14_Bottle_Sound>().PlayDestroySound();
+            yield return new WaitForSeconds(.2f);
+            Destroy(this.gameObject);
         }
     }
 }

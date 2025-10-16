@@ -488,8 +488,11 @@ namespace Player
         public void SetActiveItem(Data.PlayerItems item)
         {
             DisableAllItems();
-            playerItems[(int) item].gameObject.SetActive(true);
-            SoundManager.Instance.PlaySound(audioClip,transform,0.4f);
+            if (item != Data.PlayerItems.None)
+            {
+                playerItems[(int) item].gameObject.SetActive(true);
+                SoundManager.Instance.PlaySound(audioClip,transform,0.4f);
+            }
         }
 
         public void RemoveActiveItem()
