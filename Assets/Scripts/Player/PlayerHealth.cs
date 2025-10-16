@@ -66,10 +66,12 @@ namespace Player
             if (_currentHealthState != Data.PlayerHealthStates.Dead)
             {
                 _currentHealthState++;
+                _effect.OnDamage(_hasBeenHitTimerBase);
+                /*
                 if(_currentHealthState == Data.PlayerHealthStates.Hit)
-                    _effect.OnDamage();
+                    _effect.OnDamage(_healthRecoveryCooldownBase);
                 if(_currentHealthState == Data.PlayerHealthStates.CriticallyWounded)
-                    _effect.OnCriticalDamage();
+                    _effect.OnDamage(_healthRecoveryCooldownBase * 2);*/
             }
                 
             

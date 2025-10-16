@@ -7,16 +7,15 @@ namespace Player
 {
     public class PlayerHealthEffect : MonoBehaviour
     {
-        [Header("References")]
-        [SerializeField] private Volume volume; // Assign your Global Volume in the Inspector
+        [Header("References")] [SerializeField]
+        private Volume volume; // Assign your Global Volume in the Inspector
 
-        [Header("Effect")]
-        [SerializeField] private Color hitColor = Color.red;
-        [SerializeField, Range(0f, 1f)] private float peakIntensity = 0.5f;
-        [SerializeField, Range(0f, 1f)] private float peakIntensityCrit = 0.75f;
+        [Header("Effect")] [SerializeField] private Color hitColor = Color.red;
+        [SerializeField, Range(0f, 1f)] private float peakIntensity = 0.3f;
+        [SerializeField, Range(0f, 1f)] private float peakIntensityCrit = 0.7f;
         [SerializeField, Range(0f, 1f)] private float smoothness = 0.3f;
-        [SerializeField] private float spikeTime = .05f;
-        [SerializeField] private float fadeTime = 2f;
+        [SerializeField] private float spikeTime = 0.05f;
+        [SerializeField] private float fadeTime = 0.35f;
 
         private Vignette vignette;
         private float defaultIntensity;
@@ -28,7 +27,11 @@ namespace Player
         {
             // Make sure we have an instance profile, not the shared asset
             if (volume == null) volume = GetComponent<Volume>();
-            if (volume == null) { Debug.LogError("Volume reference missing."); return; }
+            if (volume == null)
+            {
+                Debug.LogError("Volume reference missing.");
+                return;
+            }
 
             if (volume.profile == null && volume.sharedProfile != null)
                 volume.profile = Instantiate(volume.sharedProfile);
@@ -52,19 +55,21 @@ namespace Player
         }
 
         /// <summary>Call this when the player takes damage.</summary>
-        public void OnDamage()
+        public void OnDamage(float holdTime)
         {
             if (routine != null) StopCoroutine(routine);
-            routine = StartCoroutine(DoVignettePulse());
+            routine = StartCoroutine(DoVignettePulse(holdTime));
         }
-
-        public void OnCriticalDamage()
+        
+        public void OnDamageCritical(float holdTime)
         {
             if (routine != null) StopCoroutine(routine);
-            routine = StartCoroutine(DoVignettePulseCritical());
+            routine = StartCoroutine(DoVignettePulseCrit(holdTime));
         }
+        
+        
 
-        private IEnumerator DoVignettePulse()
+        private IEnumerator DoVignettePulse(float holdTime)
         {
             // Spike
             float t = 0f;
@@ -81,6 +86,12 @@ namespace Player
                 vignette.smoothness.value = Mathf.Lerp(startSmooth, smoothness, a);
                 yield return null;
             }
+            
+            // Hold phase
+            vignette.intensity.value = peakIntensity;
+            vignette.color.value = hitColor;
+            vignette.smoothness.value = smoothness;
+            yield return new WaitForSeconds(holdTime);
 
             // Fade
             t = 0f;
@@ -99,8 +110,8 @@ namespace Player
             vignette.smoothness.value = defaultSmoothness;
             routine = null;
         }
-    
-        private IEnumerator DoVignettePulseCritical()
+        
+        private IEnumerator DoVignettePulseCrit(float holdTime)
         {
             // Spike
             float t = 0f;
@@ -117,6 +128,12 @@ namespace Player
                 vignette.smoothness.value = Mathf.Lerp(startSmooth, smoothness, a);
                 yield return null;
             }
+            
+            // Hold phase
+            vignette.intensity.value = peakIntensity;
+            vignette.color.value = hitColor;
+            vignette.smoothness.value = smoothness;
+            yield return new WaitForSeconds(holdTime);
 
             // Fade
             t = 0f;
@@ -124,7 +141,7 @@ namespace Player
             {
                 t += Time.deltaTime;
                 float a = Mathf.Clamp01(t / fadeTime);
-                vignette.intensity.value = Mathf.Lerp(peakIntensity, defaultIntensity, a);
+                vignette.intensity.value = Mathf.Lerp(peakIntensityCrit, defaultIntensity, a);
                 vignette.color.value = Color.Lerp(hitColor, defaultColor, a);
                 vignette.smoothness.value = Mathf.Lerp(smoothness, defaultSmoothness, a);
                 yield return null;
