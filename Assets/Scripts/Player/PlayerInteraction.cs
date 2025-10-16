@@ -21,7 +21,6 @@ namespace Player
         [Tooltip("Event07")] [SerializeField] private AudioClip audioClip07;
         [Tooltip("Event08")] [SerializeField] private AudioClip audioClip08;
         [Tooltip("Event12")] [SerializeField] private AudioClip audioClip12;
-        [Tooltip("Event14")] [SerializeField] private AudioClip audioClip14;
         
         private StarterAssetsInputs _input;
         private bool _pickupAvailable = false;
