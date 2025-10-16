@@ -828,18 +828,22 @@ PrefabInstance:
       propertyPath: m_PixelPerfect
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8150228081625468094, guid: 52571f68872914e24837210513edea1d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: autoStart
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: startNode
-      value: Normal_Ending
+      value: TrueName
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: yarnProject
       value: 
-      objectReference: {fileID: 7545569452688597077, guid: f2ec3214ae6091745a217ac95508aeaf, type: 3}
+      objectReference: {fileID: 7545569452688597077, guid: 28c5d4943d2865649b91353a5f30f218, type: 3}
     - target: {fileID: 8790380584632356852, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: m_IsActive
       value: 0
