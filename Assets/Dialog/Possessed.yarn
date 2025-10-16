@@ -287,3 +287,42 @@ Developer: Maybe you should think again about what kind of game you're playing h
         Narrator: <i>The call ends abruptly, leaving Andrew in silence.</i>
         <<Unlock>>
 ===
+
+title: Normal_Ending
+position: -712,-395
+---
+<<Lock>>
+<<Normal>>
+Alice: I… I'm beginning to feel better!
+Andrew: Good. It would seem we have vanquished the demon. You are safe now.
+Alice: Thank you, Father. I don't know what I would have done without you.
+Andrew: It was my holy duty to help you.
+Andrew: Remember, always keep your faith strong, and you will never be alone.
+Alice: I will, Father. Thank you again.
+<<Demon>>
+?????:<color=red>...</color>
+<<Unlock>>
+<<Call 18>>
+===
+
+title: True_Ending
+position: -712,-395
+---
+<<Lock>>
+<<Demon>>
+Putin:<color=red>Who told you my name, you wretch?</color>
+Putin:<color=red>Ahh, it's tearing me apart from the inside!</color>
+Putin:<color=red>No! This cannot be! I am eternal!</color>
+<<Normal>>  
+Andrew: Your end has come, demon. No one may escape the wrath of the Almighty Father.
+Andrew: Begone, in the name of the Lord!
+<<Demon>>
+Putin:<color=red>No! Ah, that's impossible…</color>
+<<Normal>>
+Alice: I… I feel so much better now. Thank you, Father.
+Andrew: It was my holy duty to help you.
+Andrew: Remember, always keep your faith strong, and you will never be alone.
+Alice: I will, Father. Thank you again.
+<<Unlock>>
+<<Call 18>>
+===

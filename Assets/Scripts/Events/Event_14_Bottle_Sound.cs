@@ -8,6 +8,5 @@ public class Event_14_Bottle_Sound : MonoBehaviour
     void OnDestroy()
     {
         SoundManager.Instance.PlaySound(audioClip,transform,0.2f);
-        Debug.Log("Kevin hat nen Kleinen!");
     }
 }
