@@ -326,3 +326,12 @@ Alice: I will, Father. Thank you again.
 <<Unlock>>
 <<Call 18>>
 ===
+
+title: After_throwing
+position: -712,-395
+---
+<<Demon>> 
+<<CloseEnable>>
+?????:<color=red>Shit, I've got nothing left to throw.</color>
+<<CloseDisable>>
+===
