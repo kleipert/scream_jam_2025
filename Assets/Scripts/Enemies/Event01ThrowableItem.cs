@@ -1,5 +1,6 @@
 using System;
 using Events;
+using Player;
 using UnityEngine;
 
 public class Event01ThrowableItem : MonoBehaviour
@@ -52,15 +53,10 @@ public class Event01ThrowableItem : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         eventObject?.GetComponent<Event_01_DemonThrowsItems>()?.RemoveThrowable(this.gameObject);
-        if (!other.CompareTag("Player"))
-        {
-            SoundManager.Instance.PlaySound(audioClip,transform,0.5f);
-            Destroy(this.gameObject);    
-        }
-        else
-        {
-            SoundManager.Instance.PlaySound(audioClip,transform,0.5f);
-            Destroy(this.gameObject);
-        }
+        if (other.CompareTag("Player"))
+            PlayerHealth.instance.DoDamageToPlayer();
+
+        SoundManager.Instance.PlaySound(audioClip,transform,0.5f);
+        Destroy(this.gameObject);
     }
 }

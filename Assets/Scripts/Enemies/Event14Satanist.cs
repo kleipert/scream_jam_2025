@@ -39,6 +39,7 @@ namespace Enemies
         {
             eventObject?.GetComponent<Event_14_SatanistsAttack>()?.IncreaseAttackCount();
             _anim.SetTrigger("Attack");
+            PlayerHealth.instance.DoDamageToPlayer();
         }
 
         private void OnTriggerEnter(Collider other)
