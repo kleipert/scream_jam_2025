@@ -9,10 +9,11 @@ public class E_Button : MonoBehaviour
     
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null)
         {
-            Instance = this;
+            Destroy(Instance.gameObject);
         }
+        Instance = this;
         image.enabled = false;
     }
 
