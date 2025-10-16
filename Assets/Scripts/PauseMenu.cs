@@ -10,7 +10,6 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private StarterAssetsInputs input;
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject settingsMenu;
     [SerializeField] private TMP_Text fovText;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
@@ -23,7 +22,6 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         SafeSetActive(pauseMenu, false);
-        SafeSetActive(settingsMenu, false);
         ApplyCursor(false);
     }
 
@@ -56,11 +54,6 @@ public class PauseMenu : MonoBehaviour
     {
         if (dialogueRunner && dialogueRunner.IsDialogueRunning && !_isPaused)
             return;
-
-        if (_settingsOpen)
-        {
-            Back(); 
-        }
         else
         {
             if (_isPaused) Resume();
@@ -71,7 +64,6 @@ public class PauseMenu : MonoBehaviour
     private void Pause()
     {
         SafeSetActive(pauseMenu, true);
-        SafeSetActive(settingsMenu, false);
         _settingsOpen = false;
         _isPaused = true;
 
@@ -79,36 +71,16 @@ public class PauseMenu : MonoBehaviour
         StartCoroutine(UnlockCursorRealtime());
     }
 
-    public void SettingsMenu()
-    {
-        if (!_isPaused) Pause();
-
-        SafeSetActive(pauseMenu, false);
-        SafeSetActive(settingsMenu, true);
-        _settingsOpen = true;
-        
-        StartCoroutine(UnlockCursorRealtime());
-    }
-
     public void Resume()
     {
         SafeSetActive(pauseMenu, false);
-        SafeSetActive(settingsMenu, false);
         _settingsOpen = false;
         _isPaused = false;
 
         Time.timeScale = 1f;
         ApplyCursor(false);
     }
-
-    public void Back()
-    {
-        SafeSetActive(settingsMenu, false);
-        SafeSetActive(pauseMenu, true);
-        _settingsOpen = false;
-        StartCoroutine(UnlockCursorRealtime());
-    }
-
+    
     public void Quit()
     {
         Application.Quit();

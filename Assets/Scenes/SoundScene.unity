@@ -30396,6 +30396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &356867866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33593,6 +33594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &466794074
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54834,6 +54836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &767789270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57145,6 +57148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &856722257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67437,6 +67441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &1077347474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67590,6 +67595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &1089524262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84710,6 +84716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &1424330803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85643,6 +85650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &1458476492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91337,6 +91345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &1477950971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97004,6 +97013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1 &1519956647
 GameObject:
   m_ObjectHideFlags: 0
@@ -98953,6 +98963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &1595915544
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112710,6 +112721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &1763412121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114525,6 +114537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &1827429203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -116067,6 +116080,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Event01ThrowableItem
   eventObject: {fileID: 1974600659508964165}
   audioClip: {fileID: 0}
+  audioClip2: {fileID: 0}
 --- !u!1001 &1926682191
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135694,8 +135708,9 @@ MonoBehaviour:
   EventStarted: 0
   _door: {fileID: 1317054571}
   satanists: []
-  player: {fileID: 0}
   satanistsParentObj: {fileID: 0}
+  audioScream: {fileID: 0}
+  audioDoor: {fileID: 0}
 --- !u!1 &1455376620999148284
 GameObject:
   m_ObjectHideFlags: 0
@@ -135732,6 +135747,7 @@ MonoBehaviour:
   yokai: {fileID: 0}
   tv_usual: {fileID: 0}
   tv_flicker: {fileID: 0}
+  audioTV: {fileID: 0}
 --- !u!114 &1714130300371454080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135748,7 +135764,7 @@ MonoBehaviour:
   Item: 9
   EventDone: 0
   EventStarted: 0
-  _phoneCollider: {fileID: 1779563715}
+  phoneCollider: {fileID: 0}
 --- !u!4 &1856827986197072439
 Transform:
   m_ObjectHideFlags: 0
@@ -135837,6 +135853,8 @@ MonoBehaviour:
   - {fileID: 994763929}
   player: {fileID: 777975600}
   ghostsParentObj: {fileID: 559871923}
+  ghostsSound: {fileID: 0}
+  ghostSpawn: {fileID: 0}
 --- !u!1 &2611483054548308660
 GameObject:
   m_ObjectHideFlags: 0
@@ -135901,6 +135919,7 @@ MonoBehaviour:
   Item: 9
   EventDone: 0
   EventStarted: 0
+  lightning: {fileID: 0}
 --- !u!114 &2961590494613682927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135972,6 +135991,7 @@ MonoBehaviour:
   EventStarted: 0
   LeftLine: {fileID: 815984466}
   RightLine: {fileID: 75728422}
+  clipTied: {fileID: 0}
 --- !u!1 &3358876689511354218
 GameObject:
   m_ObjectHideFlags: 0
@@ -136304,6 +136324,8 @@ MonoBehaviour:
   EventStarted: 0
   playerTeleport: {fileID: 0}
   player: {fileID: 0}
+  audioSource: {fileID: 0}
+  input: {fileID: 0}
 --- !u!114 &5039706319196813659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136392,6 +136414,7 @@ MonoBehaviour:
   - {fileID: 956170284}
   - {fileID: 875831762}
   lightTimer: 3
+  lightSound: {fileID: 0}
 --- !u!114 &6716949441064268356
 MonoBehaviour:
   m_ObjectHideFlags: 0
