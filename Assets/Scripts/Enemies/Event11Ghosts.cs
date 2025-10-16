@@ -29,6 +29,7 @@ namespace Enemies
                     _agent.destination = _startPos;
                     isAttacking = false;
                     player.GetComponent<Event11PlayerData>().getsAttacked = false;
+                    PlayerHealth.instance.DoDamageToPlayer();
                 }
             }
         }

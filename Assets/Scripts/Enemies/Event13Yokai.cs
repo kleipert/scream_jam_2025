@@ -1,4 +1,5 @@
 using System;
+using Player;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,6 +9,8 @@ public class Event13Yokai : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private AudioSource yokaiSound;
     private NavMeshAgent _agent;
+    private float attackCooldownBase = 3f;
+    private float attackCooldownCurrent = 0f;
     
 
     private bool navMeshActive = false;
@@ -28,5 +31,13 @@ public class Event13Yokai : MonoBehaviour
         }
         if(_agent.isOnNavMesh)
             _agent.destination = _player.transform.position;
+
+        if (Vector3.Distance(transform.position, _player.transform.position) <= 1 && attackCooldownCurrent <= 0)
+        {
+            PlayerHealth.instance.DoDamageToPlayer();
+            attackCooldownCurrent = attackCooldownBase;
+        }
+        attackCooldownCurrent -= Time.deltaTime;
+
     }
 }

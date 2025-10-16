@@ -82,6 +82,14 @@ public static class Data
         {Events.SatanistsAttack, "Normal_Ending"},
         {Events.TelevisionTurnsOn, "Normal_Ending"},
     };
+
+    public enum PlayerHealthStates
+    {
+        FullHealth = 0,
+        Hit = 1,
+        CriticallyWounded = 2,
+        Dead = 3
+    }
 }
 
 
