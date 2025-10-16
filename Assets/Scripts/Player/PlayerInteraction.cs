@@ -319,12 +319,14 @@ namespace Player
             if (other.CompareTag("Interactable"))
             {
                 _pickupAvailable = true;
+                E_Button.Instance.ShowButton();
             }
             
             //Event 02
-            if (other.CompareTag("Event_02_Phone"))
+            if (other.CompareTag("Event_02_Phone") && !dialogueRunner.IsDialogueRunning)
             {
                 _phoneAvailable = true;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 03 
@@ -332,12 +334,14 @@ namespace Player
             {
                 _fogAvailable = true;
                 _lastFog = other.gameObject;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 04
             if (other.CompareTag("Event_04_Cursed"))
             {
                 _curseAvaible = true;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 07 Pentagram Interact
@@ -345,18 +349,21 @@ namespace Player
             {
                 _pentagramAvailable = true;
                 _lastPentagram = other.gameObject;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 10 Ghost Interact
             if (other.CompareTag("Event_10_BedAnchorLeft"))
             {
                 _inTieDownRangeLeft = true;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 10 Ghost Interact
             if (other.CompareTag("Event_10_BedAnchorRight"))
             {
                 _inTieDownRangeRight = true;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 11 Ghost Interact
@@ -370,12 +377,14 @@ namespace Player
             if (other.CompareTag("Event_12_Heal"))
             {
                 _canHeal = true;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 13
             if (other.CompareTag("Event_13_FlickerTV") && EventController.instance.GetActiveEvent() == Data.Events.TelevisionTurnsOn)
             {
                 _inTVRange = true;
+                E_Button.Instance.ShowButton();
             }
         }
 
@@ -384,41 +393,63 @@ namespace Player
             if (other.CompareTag("Interactable"))
             {
                 _pickupAvailable = false;
+                E_Button.Instance.HideButton();
+            }
+
+            if (other.CompareTag("Event_02_Phone"))
+            {
+                E_Button.Instance.HideButton();
             }
 
             if (other.CompareTag("Event_03_Fog"))
             {
                 _fogAvailable = false;
                 _lastFog = null;
+                E_Button.Instance.HideButton();
             }    
             
             if (other.CompareTag("Event_07_Pentagram"))
             {
                 _pentagramAvailable = false;
                 _lastPentagram = null;
+                E_Button.Instance.HideButton();
             }
             
             // Event 10 Ghost Interact
             if (other.CompareTag("Event_10_BedAnchorLeft"))
             {
                 _inTieDownRangeLeft = false;
+                E_Button.Instance.HideButton();
             }
             
             // Event 10 Ghost Interact
             if (other.CompareTag("Event_10_BedAnchorRight"))
             {
                 _inTieDownRangeRight = false;
+                E_Button.Instance.HideButton();
             }
             
             // Event 12 
             if (other.CompareTag("Event_12_Heal"))
             {
                 _canHeal = false;
+                E_Button.Instance.HideButton();
             }
             
             if (other.CompareTag("Event_13_FlickerTV") && EventController.instance.GetActiveEvent() == Data.Events.TelevisionTurnsOn)
             {
                 _inTVRange = false;
+                E_Button.Instance.HideButton();
+            }
+
+            if (other.CompareTag("Event_05_Flying"))
+            {
+                E_Button.Instance.HideButton();
+            }
+
+            if (other.CompareTag("Event_08_Circle"))
+            {
+                E_Button.Instance.HideButton();
             }
         }
 
@@ -437,6 +468,7 @@ namespace Player
                 {
                     if (_audioSource.isPlaying) _audioSource.Stop();
                 }
+                E_Button.Instance.ShowButton();
             }
             
             // Event 08
@@ -449,6 +481,7 @@ namespace Player
                         StartCoroutine(WriteRune(other.transform.GetChild(i).gameObject));
                     }
                 }
+                E_Button.Instance.ShowButton();
             }
         }
 

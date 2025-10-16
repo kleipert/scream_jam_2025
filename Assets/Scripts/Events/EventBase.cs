@@ -24,6 +24,7 @@ namespace Events
             EventController.instance.lastEvent = Event;
             EventStarted = false;
             EventDone = true;
+            E_Button.Instance.HideButton();
             PlayerItemController.instance.ClearPlayerItem();
             this.gameObject.SetActive(false);
         }
