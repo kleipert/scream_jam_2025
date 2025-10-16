@@ -8,6 +8,7 @@ public class StartDialog : MonoBehaviour
 {
     [SerializeField] private DialogueRunner dialogueRunner;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private CinemachineVirtualCamera dialogCamera;
     [SerializeField] private GameObject target;
 
     private CinemachineComposer _composer;
@@ -26,8 +27,10 @@ public class StartDialog : MonoBehaviour
         if (other.CompareTag("Dialog_Start") && !dialogueRunner.IsDialogueRunning &&
             !EventController.instance.isEventActive)
         {
-            virtualCamera.PreviousStateIsValid = false;
-            virtualCamera.LookAt = target.transform;
+            //virtualCamera.PreviousStateIsValid = false;
+            //virtualCamera.LookAt = target.transform;
+            virtualCamera.enabled = false;
+            dialogCamera.enabled = true;
             
             var nodeName = EventController.instance.lastEvent;
             dialogueRunner.StartDialogue(Data.EventsToDialog[nodeName]);

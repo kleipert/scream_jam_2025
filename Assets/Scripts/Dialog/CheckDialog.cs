@@ -10,6 +10,7 @@ public class CheckDialog : MonoBehaviour
     [SerializeField] private StarterAssetsInputs starterInputs;
     [SerializeField] private PlayerInput playerInput;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private CinemachineVirtualCamera dialogCamera;
     
     void Awake()
     {
@@ -43,7 +44,8 @@ public class CheckDialog : MonoBehaviour
 
         if (!active)
         {
-            virtualCamera.LookAt = null;
+            dialogCamera.enabled = false;
+            virtualCamera.enabled = true;
         }
         
         Cursor.lockState = active ? CursorLockMode.None : CursorLockMode.Locked;
