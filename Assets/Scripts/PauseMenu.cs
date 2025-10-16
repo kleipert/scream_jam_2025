@@ -15,8 +15,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private DialogueRunner dialogueRunner;
     [SerializeField] private AudioMixer audioMixer;
-
-    private bool _settingsOpen;
+    
     private bool _isPaused;
 
     void Start()
@@ -64,7 +63,6 @@ public class PauseMenu : MonoBehaviour
     private void Pause()
     {
         SafeSetActive(pauseMenu, true);
-        _settingsOpen = false;
         _isPaused = true;
 
         Time.timeScale = 0f;
@@ -74,7 +72,6 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         SafeSetActive(pauseMenu, false);
-        _settingsOpen = false;
         _isPaused = false;
 
         Time.timeScale = 1f;

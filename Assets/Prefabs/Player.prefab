@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 2056648710482343288}
   - component: {fileID: 2120101143664788974}
   - component: {fileID: 4194481823881432506}
-  - component: {fileID: 2748606196045976915}
   m_Layer: 0
   m_Name: Interaction
   m_TagString: Player
@@ -319,21 +318,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2748606196045976915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2571810311814262427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98d4ef77347a4664b8e20a744ec72de4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StartDialog
-  dialogueRunner: {fileID: 0}
-  virtualCamera: {fileID: 7906683273860894297}
-  target: {fileID: 0}
 --- !u!1 &3509545350989164148
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +905,6 @@ GameObject:
   - component: {fileID: 7581796654818558883}
   - component: {fileID: 2266378001543826763}
   - component: {fileID: 6570938925481830349}
-  - component: {fileID: 7147170033609508044}
   m_Layer: 0
   m_Name: PlayerCapsule
   m_TagString: Player
@@ -1068,21 +1051,6 @@ MonoBehaviour:
   cursorLocked: 1
   cursorInputForLook: 1
 --- !u!114 &6570938925481830349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6840198015320122378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72dd8933a14e47dbaffce9c957bb734d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player.Event11PlayerData
-  getsAttacked: 0
-  ghostsKilled: 0
-  allGhostsKilled: 0
---- !u!114 &7147170033609508044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

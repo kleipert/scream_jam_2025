@@ -26,11 +26,11 @@ public class StartDialog : MonoBehaviour
         if (other.CompareTag("Dialog_Start") && !dialogueRunner.IsDialogueRunning &&
             !EventController.instance.isEventActive)
         {
-            var nodeName = EventController.instance.lastEvent;
-            dialogueRunner.StartDialogue(Data.EventsToDialog[nodeName]);
-            
             virtualCamera.PreviousStateIsValid = false;
             virtualCamera.LookAt = target.transform;
+            
+            var nodeName = EventController.instance.lastEvent;
+            dialogueRunner.StartDialogue(Data.EventsToDialog[nodeName]);
         }
     }
 }

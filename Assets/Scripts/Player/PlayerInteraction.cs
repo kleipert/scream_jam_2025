@@ -104,6 +104,7 @@ namespace Player
             {
                 PlayerItemController.instance.GetCorrectPlayerItem();
                 _pickupAvailable = false;
+                E_Button.Instance.HideButton();
             }
             
             // Event 00
@@ -116,6 +117,9 @@ namespace Player
                     StartCoroutine(DrinkWine());
                 }
             }
+            
+            if (EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed && PlayerItemController.instance.hasItem)
+                E_Button.Instance.ShowButton();
             
             //Event 02
             if (_phoneAvailable && _input.interact)
@@ -186,6 +190,7 @@ namespace Player
             {
                 GameObject.Find("Event10").GetComponent<Event_10_TieDemonDown>().TieDownLeft();
                 _leftTied = true;
+                E_Button.Instance.HideButton();
             }
             
             // Event 10
@@ -193,6 +198,7 @@ namespace Player
             {
                 GameObject.Find("Event10").GetComponent<Event_10_TieDemonDown>().TieDownRight();
                 _rightTied = true;
+                E_Button.Instance.HideButton();
             }
             
             // Event 12
@@ -236,6 +242,7 @@ namespace Player
             //GameObject.Find("Senser").GetComponent<Animator>().SetTrigger("Sensing");
             SoundManager.Instance.PlaySound(audioClip03,transform,0.5f,2f);
             yield return new WaitForSeconds(2f);
+            E_Button.Instance.HideButton();
             if (_lastFog != null)
             {
                 Destroy(_lastFog);
@@ -319,7 +326,8 @@ namespace Player
             if (other.CompareTag("Interactable"))
             {
                 _pickupAvailable = true;
-                E_Button.Instance.ShowButton();
+                if (EventController.instance.GetActiveItem() != Data.PlayerItems.None && !PlayerItemController.instance.hasItem)
+                    E_Button.Instance.ShowButton();
             }
             
             //Event 02
@@ -352,14 +360,14 @@ namespace Player
                 E_Button.Instance.ShowButton();
             }
             
-            // Event 10 Ghost Interact
+            // Event 10 
             if (other.CompareTag("Event_10_BedAnchorLeft"))
             {
                 _inTieDownRangeLeft = true;
                 E_Button.Instance.ShowButton();
             }
             
-            // Event 10 Ghost Interact
+            // Event 10 
             if (other.CompareTag("Event_10_BedAnchorRight"))
             {
                 _inTieDownRangeRight = true;
@@ -408,6 +416,9 @@ namespace Player
                 E_Button.Instance.HideButton();
             }    
             
+            if (other.CompareTag("Event_04_Cursed"))
+                E_Button.Instance.HideButton();
+            
             if (other.CompareTag("Event_07_Pentagram"))
             {
                 _pentagramAvailable = false;
@@ -415,14 +426,17 @@ namespace Player
                 E_Button.Instance.HideButton();
             }
             
-            // Event 10 Ghost Interact
+            if (other.CompareTag("Event_08_Circle"))
+                E_Button.Instance.HideButton();
+            
+            // Event 10
             if (other.CompareTag("Event_10_BedAnchorLeft"))
             {
                 _inTieDownRangeLeft = false;
                 E_Button.Instance.HideButton();
             }
             
-            // Event 10 Ghost Interact
+            // Event 10 
             if (other.CompareTag("Event_10_BedAnchorRight"))
             {
                 _inTieDownRangeRight = false;

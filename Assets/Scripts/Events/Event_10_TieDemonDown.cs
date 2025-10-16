@@ -30,13 +30,11 @@ namespace Events
             if (isLeftTied)
             {
                 StartCoroutine(ActivateSound(true));
-                isLeftTied = false;
             }
             
             if (isRightTied)
             {
                 StartCoroutine(ActivateSound(false));
-                isRightTied = false;
             }
             
             if (_leftAudio)
@@ -50,7 +48,7 @@ namespace Events
 
         private IEnumerator EndAfterDelay()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(3f);
             StopEvent();
         }
 

@@ -9,5 +9,7 @@ public class Event_08_Circle : MonoBehaviour
    void Awake()
    {
       interaction.GetComponent<PlayerInteraction>().CircleCntIncrease();
+      gameObject.GetComponentInParent<SphereCollider>().enabled = false;
+      E_Button.Instance.HideButton();
    }
 }
