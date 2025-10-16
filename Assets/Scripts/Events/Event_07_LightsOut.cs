@@ -18,6 +18,7 @@ namespace Events
         [SerializeField] private GameObject lightSources;
         [SerializeField] private GameObject[] pentagrams;
         [SerializeField] private float lightTimer = 3f;
+        [SerializeField] private AudioClip lightSound;
         private bool pentagramActive = false;
         private Animation _towelAnimation;
         
@@ -40,6 +41,7 @@ namespace Events
         {
             yield return new WaitForSeconds(lightTimer);
             lightSources.SetActive(false);
+            SoundManager.Instance.PlaySound(lightSound,transform,0.3f);
             yield return new WaitForSeconds(lightTimer);
             lightSources.SetActive(true);
             foreach (var pentagram in pentagrams)

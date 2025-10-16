@@ -36,6 +36,8 @@ public static class Data
         SatanistsAttack = 14,
         TrueName = 15,
         None = 16,
+        NormalEnd = 17,
+        Credits = 18,
     }
 
     public static readonly Dictionary<Events, PlayerItems> EventsToItemsMap = new Dictionary<Events, PlayerItems>
@@ -57,6 +59,8 @@ public static class Data
         {Events.SatanistsAttack, PlayerItems.HolyWater},
         {Events.TrueName, PlayerItems.None},
         {Events.None, PlayerItems.None},
+        {Events.NormalEnd, PlayerItems.None},
+        {Events.Credits, PlayerItems.None },
     };
     
     public static readonly Dictionary<Events, string> EventsToDialog= new Dictionary<Events, string>
@@ -74,6 +78,9 @@ public static class Data
         {Events.TieDownDemon, "Dialog_07"},
         {Events.GhostsAttack, "Dialog_08"},
         {Events.FirstAidForDemon, "Dialog_09"},
+        {Events.TrueName, "True_Ending"},
+        {Events.SatanistsAttack, "Normal_Ending"},
+        {Events.TelevisionTurnsOn, "Normal_Ending"},
     };
 }
 

@@ -21,7 +21,7 @@ public class StartDialog : MonoBehaviour
         if (!_composer) _composer = virtualCamera.AddCinemachineComponent<CinemachineComposer>();
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Dialog_Start") && !dialogueRunner.IsDialogueRunning &&
             !EventController.instance.isEventActive)

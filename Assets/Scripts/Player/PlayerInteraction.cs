@@ -5,6 +5,7 @@ using GameManager;
 using JetBrains.Annotations;
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.Events;
 using Yarn.Unity;
 
 namespace Player
@@ -13,11 +14,25 @@ namespace Player
     {
         [SerializeField] private GameObject[] playerItems;
         [SerializeField] private GameObject mainCamera;
+        [Tooltip("Pick-Up")] [SerializeField] private AudioClip audioClip;
+        [Tooltip("Event00")] [SerializeField] private AudioClip audioClip00;
+        [Tooltip("Event03")] [SerializeField] private AudioClip audioClip03;
+        [Tooltip("Event04")] [SerializeField] private AudioClip audioClip04;
+        [Tooltip("Event07")] [SerializeField] private AudioClip audioClip07;
+        [Tooltip("Event08")] [SerializeField] private AudioClip audioClip08;
+        [Tooltip("Event12")] [SerializeField] private AudioClip audioClip12;
+        [Tooltip("Event14")] [SerializeField] private AudioClip audioClip14;
+        
         private StarterAssetsInputs _input;
         private bool _pickupAvailable = false;
         
+        // Event_00 Variable
+        private bool _canDrink;
+        private bool _endEvent00;
+        
         // Event 02 Variables
         [SerializeField] private DialogueRunner dialogueRunner;
+        [SerializeField] private GameObject event02;
         private bool _phoneAvailable = false;
         
         // Event 03 Variables
@@ -36,6 +51,7 @@ namespace Player
         private bool _isFlying;
         private Vector3 _startPos;
         private float _maxHeight;
+        private AudioSource _audioSource;
         
         // Event 07 Variables
         private bool _pentagramAvailable = false;
@@ -45,14 +61,18 @@ namespace Player
         // Event 08 Variables
         [SerializeField] private GameObject[] circles;
         private uint _circlesCnt;
+        private bool _isWriting;
         private bool _endEvent08 = true;
         
         // Event 10 Variables
         private bool _inTieDownRangeLeft = false;
         private bool _inTieDownRangeRight = false;
+        private bool _leftTied;
+        private bool _rightTied;
         
         // Event 12 Variables 
         private bool _canHeal;
+        private bool _isHealing;
         
         // Event 13 Variables
         private bool _inTVRange = false;
@@ -60,8 +80,8 @@ namespace Player
         // Event 14 Variables
         [SerializeField] private GameObject holyWaterPrefab;
         [SerializeField] private GameObject holyWaterThrowPos;
-        private float _holyWaterThrowCooldownBase = 3f;
-        private float _holyWaterThrowCooldownCurrent = 3f;
+        private float _holyWaterThrowCooldownBase = 2f;
+        private float _holyWaterThrowCooldownCurrent = 2f;
         
         
         void Awake()
@@ -74,6 +94,7 @@ namespace Player
             _startPos = possessedWoman.transform.position;
             _maxHeight = possessedWoman.transform.position.y + height;
             _input = GetComponentInParent<StarterAssetsInputs>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Update()
@@ -87,8 +108,13 @@ namespace Player
             
             // Event 00
             if (EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed && _input.interact)
-            { 
-                StartCoroutine(DrinkWine());
+            {
+                StartCoroutine(WaitForWine());
+                if (_canDrink && !_endEvent00)
+                {
+                    _endEvent00 = true;
+                    StartCoroutine(DrinkWine());
+                }
             }
             
             //Event 02
@@ -97,6 +123,7 @@ namespace Player
                 _phoneAvailable = false;
                 if (!dialogueRunner.IsDialogueRunning)
                 {
+                    event02.GetComponent<Event_02_PhoneRings>().StopAudio();
                     dialogueRunner.StartDialogue("Dialog_Phone");
                     EventController.instance.StopCurrentEvent();
                 }
@@ -112,7 +139,9 @@ namespace Player
             // Event 04
             if (_curseAvaible && _input.interact)
             {
+                _curseAvaible = false;
                 cursedObject.SetActive(false);
+                SoundManager.Instance.PlaySound(audioClip04,transform,0.5f);
                 EventController.instance.StopCurrentEvent();
             }
             
@@ -124,7 +153,10 @@ namespace Player
                 if (_isFlying && possessedWoman.transform.position.y < _maxHeight)
                     possessedWoman.transform.position += Vector3.up * (flyingSpeed * Time.deltaTime);
                 if (possessedWoman.transform.position.y < _startPos.y)
+                {
                     EventController.instance.StopCurrentEvent();
+                    _audioSource.Stop();
+                }
             }
             
             // Event 07
@@ -150,22 +182,27 @@ namespace Player
             }
             
             // Event 10
-            if (_inTieDownRangeLeft && _input.interact)
+            if (_inTieDownRangeLeft && _input.interact && !_leftTied)
             {
                 GameObject.Find("Event10").GetComponent<Event_10_TieDemonDown>().TieDownLeft();
+                _leftTied = true;
             }
             
             // Event 10
-            if (_inTieDownRangeRight && _input.interact)
+            if (_inTieDownRangeRight && _input.interact && !_rightTied)
             {
                 GameObject.Find("Event10").GetComponent<Event_10_TieDemonDown>().TieDownRight();
+                _rightTied = true;
             }
             
             // Event 12
             if (EventController.instance.GetActiveEvent() == Data.Events.FirstAidForDemon)
             {
-                if (_canHeal && _input.interact && PlayerItemController.instance.hasItem)
-                    EventController.instance.StopCurrentEvent();
+                if (_canHeal && _input.interact && PlayerItemController.instance.hasItem && !_isHealing)
+                {
+                    StartCoroutine(HealDemon());
+                    _isHealing = true;
+                }
             }
             
             // Event 13
@@ -197,6 +234,7 @@ namespace Player
         private IEnumerator CleanseFog()
         {
             //GameObject.Find("Senser").GetComponent<Animator>().SetTrigger("Sensing");
+            SoundManager.Instance.PlaySound(audioClip03,transform,0.5f,2f);
             yield return new WaitForSeconds(2f);
             if (_lastFog != null)
             {
@@ -210,6 +248,7 @@ namespace Player
         private IEnumerator CleansePentagram()
         {
             GameObject.Find("ItemTowel").GetComponent<Animator>().SetTrigger("TowelCleaning");
+            SoundManager.Instance.PlaySound(audioClip07,transform,0.3f);
             yield return new WaitForSeconds(2f);
             if (_lastPentagram != null)
             {
@@ -220,11 +259,18 @@ namespace Player
             }
         }
 
+        private IEnumerator WaitForWine()
+        {
+            yield return new WaitForSeconds(1f);
+            _canDrink = true;
+        }
+
         private IEnumerator DrinkWine()
         {
             //GameObject.Find("ItemTowel").GetComponent<Animator>().SetTrigger("DrinkWine");
+            SoundManager.Instance.PlaySound(audioClip00,transform,0.5f);
             yield return new WaitForSeconds(2f);
-            _input.invert = !_input.invert;
+            _input.invert = false;
             EventController.instance.StopCurrentEvent();
         }
 
@@ -251,18 +297,36 @@ namespace Player
             EventController.instance.StopCurrentEvent();
         }
 
+        private IEnumerator HealDemon()
+        {
+            SoundManager.Instance.PlaySound(audioClip12,transform,0.1f);
+            yield return new WaitForSeconds(2f);
+            EventController.instance.StopCurrentEvent();
+        }
+
+        private IEnumerator WriteRune(GameObject other)
+        {
+            SoundManager.Instance.PlaySound(audioClip08,transform,0.6f);
+            _isWriting = true;
+            yield return new WaitForSeconds(2f);
+            other.SetActive(true);
+            _isWriting = false;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             // Item Pickup
             if (other.CompareTag("Interactable"))
             {
                 _pickupAvailable = true;
+                E_Button.Instance.ShowButton();
             }
             
             //Event 02
-            if (other.CompareTag("Event_02_Phone"))
+            if (other.CompareTag("Event_02_Phone") && !dialogueRunner.IsDialogueRunning)
             {
                 _phoneAvailable = true;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 03 
@@ -270,12 +334,14 @@ namespace Player
             {
                 _fogAvailable = true;
                 _lastFog = other.gameObject;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 04
             if (other.CompareTag("Event_04_Cursed"))
             {
                 _curseAvaible = true;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 07 Pentagram Interact
@@ -283,18 +349,21 @@ namespace Player
             {
                 _pentagramAvailable = true;
                 _lastPentagram = other.gameObject;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 10 Ghost Interact
             if (other.CompareTag("Event_10_BedAnchorLeft"))
             {
                 _inTieDownRangeLeft = true;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 10 Ghost Interact
             if (other.CompareTag("Event_10_BedAnchorRight"))
             {
                 _inTieDownRangeRight = true;
+                E_Button.Instance.ShowButton();
             }
             
             // Event 11 Ghost Interact
@@ -308,12 +377,14 @@ namespace Player
             if (other.CompareTag("Event_12_Heal"))
             {
                 _canHeal = true;
+                E_Button.Instance.ShowButton();
             }
             
-            // Event 12 
+            // Event 13
             if (other.CompareTag("Event_13_FlickerTV") && EventController.instance.GetActiveEvent() == Data.Events.TelevisionTurnsOn)
             {
                 _inTVRange = true;
+                E_Button.Instance.ShowButton();
             }
         }
 
@@ -322,41 +393,63 @@ namespace Player
             if (other.CompareTag("Interactable"))
             {
                 _pickupAvailable = false;
+                E_Button.Instance.HideButton();
+            }
+
+            if (other.CompareTag("Event_02_Phone"))
+            {
+                E_Button.Instance.HideButton();
             }
 
             if (other.CompareTag("Event_03_Fog"))
             {
                 _fogAvailable = false;
                 _lastFog = null;
+                E_Button.Instance.HideButton();
             }    
             
             if (other.CompareTag("Event_07_Pentagram"))
             {
                 _pentagramAvailable = false;
                 _lastPentagram = null;
+                E_Button.Instance.HideButton();
             }
             
             // Event 10 Ghost Interact
             if (other.CompareTag("Event_10_BedAnchorLeft"))
             {
                 _inTieDownRangeLeft = false;
+                E_Button.Instance.HideButton();
             }
             
             // Event 10 Ghost Interact
             if (other.CompareTag("Event_10_BedAnchorRight"))
             {
                 _inTieDownRangeRight = false;
-            }
-
-            if (other.CompareTag("Event_12_Heal"))
-            {
-                _canHeal = false;
+                E_Button.Instance.HideButton();
             }
             
             // Event 12 
+            if (other.CompareTag("Event_12_Heal"))
+            {
+                _canHeal = false;
+                E_Button.Instance.HideButton();
+            }
+            
             if (other.CompareTag("Event_13_FlickerTV") && EventController.instance.GetActiveEvent() == Data.Events.TelevisionTurnsOn)
             {
                 _inTVRange = false;
+                E_Button.Instance.HideButton();
+            }
+
+            if (other.CompareTag("Event_05_Flying"))
+            {
+                E_Button.Instance.HideButton();
+            }
+
+            if (other.CompareTag("Event_08_Circle"))
+            {
+                E_Button.Instance.HideButton();
             }
         }
 
@@ -367,20 +460,28 @@ namespace Player
             {
                 if (_input.interact && PlayerItemController.instance.hasItem)
                 {
-                    possessedWoman.transform.position += Vector3.down * (flyingSpeed * 2 * Time.deltaTime);
+                    possessedWoman.transform.position += Vector3.down * (flyingSpeed * 1.3f * Time.deltaTime);
+                    if (!_audioSource.isPlaying)
+                        _audioSource.Play();
                 }
+                else
+                {
+                    if (_audioSource.isPlaying) _audioSource.Stop();
+                }
+                E_Button.Instance.ShowButton();
             }
             
             // Event 08
             if (other.CompareTag("Event_08_Circle"))
             {
-                if (_input.interact && PlayerItemController.instance.hasItem)
+                if (_input.interact && PlayerItemController.instance.hasItem && !_isWriting)
                 {
                     for (int i = 0; i < other.transform.childCount; i++)
                     {
-                        other.transform.GetChild(i).gameObject.SetActive(true);
+                        StartCoroutine(WriteRune(other.transform.GetChild(i).gameObject));
                     }
                 }
+                E_Button.Instance.ShowButton();
             }
         }
 
@@ -388,6 +489,7 @@ namespace Player
         {
             DisableAllItems();
             playerItems[(int) item].gameObject.SetActive(true);
+            SoundManager.Instance.PlaySound(audioClip,transform,0.4f);
         }
 
         public void RemoveActiveItem()
