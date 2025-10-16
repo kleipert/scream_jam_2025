@@ -21,7 +21,6 @@ namespace Events
 
         private bool _startEvent;
         private bool _spineAtTarget;
-        private bool _returning;
         
         Quaternion baseSpineLocal, baseHeadLocal;
         
@@ -74,7 +73,6 @@ namespace Events
         public override void StopEvent()
         {
             laser.gameObject.SetActive(false);
-            _returning = true;
             _startEvent = false;
             
             StartCoroutine(ReturnToBaseThenFinish());
@@ -103,9 +101,6 @@ namespace Events
                 if (spineDone && headDone) break;
                 yield return null;
             }
-
-            _returning = false;
-            
             base.StopEvent();
         }
     }

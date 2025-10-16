@@ -1,4 +1,5 @@
-﻿using Events;
+﻿using System;
+using Events;
 using Player;
 using UnityEngine;
 using UnityEngine.AI;
@@ -40,9 +41,16 @@ namespace Enemies
             _anim.SetTrigger("Attack");
         }
 
-        private void OnDestroy()
+        private void OnTriggerEnter(Collider other)
         {
-            eventObject?.GetComponent<Event_14_SatanistsAttack>()?.RemoveSatanist(this.gameObject);
+            if (other.CompareTag("HolyWaterBottle"))
+            {
+                if (other.GetComponent<Event14HolyWater>()._hitCount == 1)
+                {
+                    eventObject?.GetComponent<Event_14_SatanistsAttack>()?.RemoveSatanist(this.gameObject);
+                    Destroy(this.gameObject);
+                }
+            }
         }
     }
 }
