@@ -13,7 +13,6 @@ namespace Events
         private float _rotClosed = 0f;
         
         [SerializeField] private List<GameObject> satanists;
-        [SerializeField] private GameObject player;
         [SerializeField] private GameObject satanistsParentObj;
 
         private Event14PlayerData playerData;

@@ -13,9 +13,11 @@ namespace Enemies
         [SerializeField] private GameObject eventObject;
         private float _attackCooldownBase = 3f;
         private float _attackCooldownCurrent = 3f;
+        private Animator _anim;
         private void Start()
         {
             _agent = GetComponent<NavMeshAgent>();
+            _anim = GetComponent<Animator>();
         }
 
         private void Update()
@@ -23,7 +25,7 @@ namespace Enemies
             if (isAttacking)
             {
                 _agent.destination = player.transform.position;
-                if (Vector3.Distance(transform.position, player.transform.position) <= 1 && _attackCooldownCurrent <= 0f)
+                if (Vector3.Distance(transform.position, player.transform.position) <= 1f && _attackCooldownCurrent <= 0f)
                 {
                     AttackPlayer();
                     _attackCooldownCurrent = _attackCooldownBase;
@@ -35,6 +37,7 @@ namespace Enemies
         public void AttackPlayer()
         {
             eventObject?.GetComponent<Event_14_SatanistsAttack>()?.IncreaseAttackCount();
+            _anim.SetTrigger("Attack");
         }
 
         private void OnDestroy()
