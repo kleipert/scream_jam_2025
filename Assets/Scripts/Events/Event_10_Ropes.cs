@@ -6,6 +6,8 @@ namespace Events
     {
         [SerializeField] private GameObject _bedPos;
         [SerializeField] private GameObject _demonPos;
+        [SerializeField] private GameObject _colliderObj;
+        
         private LineRenderer _lr;
         private bool _isActivated = false;
 
@@ -29,6 +31,8 @@ namespace Events
         {
             _lr.enabled = true;
             _isActivated = true;
+            _colliderObj.GetComponent<BoxCollider>().enabled = false;
+
         }
 
         public void Disable()
