@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Enemies;
 using Events;
@@ -63,6 +64,11 @@ namespace Player
         private bool _isWriting;
         private bool _endEvent08 = true;
         
+        // Event 09 Variables
+        [SerializeField] private GameObject sink;
+        private bool _inSinkRange = false;
+        private bool _isHitByLaser = false;
+        
         // Event 10 Variables
         private bool _inTieDownRangeLeft = false;
         private bool _inTieDownRangeRight = false;
@@ -79,7 +85,7 @@ namespace Player
         // Event 14 Variables
         [SerializeField] private GameObject holyWaterPrefab;
         [SerializeField] private GameObject holyWaterThrowPos;
-        private float _holyWaterThrowCooldownBase = 2f;
+        private readonly float _holyWaterThrowCooldownBase = 2f;
         private float _holyWaterThrowCooldownCurrent = 2f;
         
         
@@ -182,6 +188,17 @@ namespace Player
                     StartCoroutine(EndCircle());
                     _endEvent08 = false;
                 }    
+            }
+            
+            // Event 09
+            if ((EventController.instance.GetActiveEvent() == Data.Events.DemonThrowsUp ||
+                 EventController.instance.lastEvent == Data.Events.DemonThrowsUp) && 
+                _input.interact && 
+                _inSinkRange &&
+                _isHitByLaser)
+            {
+                PlayerHealth.instance.RemoveGreenVignette();
+                _isHitByLaser = false;
             }
             
             // Event 10
@@ -361,6 +378,24 @@ namespace Player
                 E_Button.Instance.ShowButton();
             }
             
+            // Event 09 Sink
+            if (other.CompareTag("Event_09_Sink") && 
+                (EventController.instance.GetActiveEvent() == Data.Events.DemonThrowsUp ||
+                 EventController.instance.lastEvent == Data.Events.DemonThrowsUp)
+                && _isHitByLaser)
+            {
+                _inSinkRange = true;
+                E_Button.Instance.ShowButton();
+            }
+            
+            // Event 09 Laser
+            if (other.gameObject.CompareTag("Event_09_LaserBeam") && EventController.instance.GetActiveEvent() == Data.Events.DemonThrowsUp)
+            {
+                _isHitByLaser = true;
+                if(_isHitByLaser)
+                    PlayerHealth.instance.AddGreenVignette();
+            }
+            
             // Event 10 
             if (other.CompareTag("Event_10_BedAnchorLeft"))
             {
@@ -429,6 +464,15 @@ namespace Player
             
             if (other.CompareTag("Event_08_Circle"))
                 E_Button.Instance.HideButton();
+            
+            // Event 09 Sink Interact
+            if (other.CompareTag("Event_09_Sink") &&
+                (EventController.instance.GetActiveEvent() == Data.Events.DemonThrowsUp ||
+                 EventController.instance.lastEvent == Data.Events.DemonThrowsUp))
+            {
+                _inSinkRange = false;
+                E_Button.Instance.HideButton();
+            }
             
             // Event 10
             if (other.CompareTag("Event_10_BedAnchorLeft"))
