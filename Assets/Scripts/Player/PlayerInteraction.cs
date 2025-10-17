@@ -199,7 +199,7 @@ namespace Player
             }
             
             // Event 08
-            if (EventController.instance.GetActiveEvent() == Data.Events.PortalOpens)
+            if (EventController.instance.GetActiveEvent() == Data.Events.PortalOpens && PlayerItemController.instance.hasItem)
             {
                 foreach (var circle in circles)
                 {
