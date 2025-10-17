@@ -1,4 +1,5 @@
 ﻿using System;
+using GameManager;
 using UnityEngine;
 
 namespace Player
@@ -78,6 +79,13 @@ namespace Player
             if (_currentHealthState == Data.PlayerHealthStates.Dead)
             {
                 // WE DEAD DO SOMETHING
+                var tpLocation = GameObject.Find("PlayerTeleportPoint");
+                var playerCapsule = GameObject.Find("PlayerCapsule");
+                var characterController = playerCapsule.GetComponent<CharacterController>();
+                characterController.enabled = false;
+                playerCapsule.transform.position = tpLocation.transform.position;
+                characterController.enabled = true;
+                EventController.instance.StopCurrentEvent();
             }
             _hasBeenHitTimerCurrent = _hasBeenHitTimerBase;
             _healthRecoveryCooldownCurrent = _healthRecoveryCooldownBase;
