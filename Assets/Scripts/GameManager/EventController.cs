@@ -7,7 +7,7 @@ namespace GameManager
     public class EventController : MonoBehaviour
     {
         public static EventController instance;
-        private EventBase _activeEvent;
+        [SerializeField] private EventBase _activeEvent;
         public EventBase[] allEvents;
         public Data.Events lastEvent;
         public bool isEventActive = false;
@@ -34,7 +34,7 @@ namespace GameManager
             //StartEvent(Data.Events.None);
             //lastEvent = Data.Events.None;
             // Testing
-            StartEvent(Data.Events.DemonThrowsUp);
+            StartEvent(Data.Events.PlayerPossesed);
         }
 
         private EventBase GetEventFromEnum(Data.Events eventToStart)
