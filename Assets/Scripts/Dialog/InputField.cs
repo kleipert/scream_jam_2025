@@ -51,6 +51,7 @@ public class InputField : MonoBehaviour
         
         input.gameObject.SetActive(false);
 
+        
         dialogueRunner.VariableStorage.SetValue(yarnVarName, input.text.ToLower());
     }
 }

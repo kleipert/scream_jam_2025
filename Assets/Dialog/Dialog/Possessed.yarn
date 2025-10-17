@@ -222,7 +222,7 @@ position: -712,-395
     -><i>Banish it by its true name</i>
         <<Unlock>>
         <<Input "$true_name">>
-        <<if $true_name is "Putin">>
+        <<if $true_name is "putin">>
             <<Call 15>>
             <<wait 2>>
             <<CloseEnable>>
