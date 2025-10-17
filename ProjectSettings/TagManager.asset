@@ -22,6 +22,7 @@ TagManager:
   - Event_13_FlickerTV
   - Event_09_Sink
   - Event_09_LaserBeam
+  - Event_00_Wine
   layers:
   - Default
   - TransparentFX
