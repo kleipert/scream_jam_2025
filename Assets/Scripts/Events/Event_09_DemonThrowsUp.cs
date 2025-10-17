@@ -1,7 +1,5 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
 using GameManager;
 
 namespace Events
@@ -21,6 +19,7 @@ namespace Events
 
         private bool _startEvent;
         private bool _spineAtTarget;
+        private bool _isBeaming = false;
         
         Quaternion baseSpineLocal, baseHeadLocal;
         
@@ -50,8 +49,10 @@ namespace Events
                     
                     _spineAtTarget = Mathf.Abs(Mathf.DeltaAngle(nextZ, targetSpineZ)) <= angleTolerance;
 
-                    if (_spineAtTarget)
+                    if (_spineAtTarget && !_isBeaming)
                     {
+                        _isBeaming = true;
+                        head.GetComponent<BoxCollider>().enabled = true;
                         laser.gameObject.SetActive(true);
                         StartCoroutine(EndEvent());
                     }
@@ -67,6 +68,7 @@ namespace Events
         IEnumerator EndEvent()
         {
             yield return new WaitForSeconds(10.0f);
+            head.GetComponent<BoxCollider>().enabled = false;
             EventController.instance.StopCurrentEvent();
         } 
 
