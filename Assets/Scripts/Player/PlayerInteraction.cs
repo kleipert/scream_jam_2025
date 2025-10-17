@@ -29,6 +29,10 @@ namespace Player
         // Event_00 Variable
         private bool _canDrink;
         private bool _endEvent00;
+        private bool _isInWineRange = false;
+        private bool _hasFilledCup = false;
+        private bool _hasDrunkWine = false;
+        private bool _hasFilledCupStarted = false;
         
         // Event 02 Variables
         [SerializeField] private DialogueRunner dialogueRunner;
@@ -113,17 +117,27 @@ namespace Player
             }
             
             // Event 00
-            if (EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed && _input.interact)
+            if (EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed && _input.interact && !_hasFilledCup && _isInWineRange)
             {
-                StartCoroutine(WaitForWine());
-                if (_canDrink && !_endEvent00)
+                if (!_hasFilledCupStarted)
                 {
-                    _endEvent00 = true;
+                    _hasFilledCupStarted = true;
+                    StartCoroutine(FillCup());
+                }
+            }
+            
+            // Event 00
+            if (EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed && _input.interact && _hasFilledCup)
+            {
+                if (!_hasDrunkWine)
+                {
+                    _hasDrunkWine = true;
                     StartCoroutine(DrinkWine());
                 }
             }
             
-            if (EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed && PlayerItemController.instance.hasItem)
+            
+            if (EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed && PlayerItemController.instance.hasItem && _hasFilledCup)
                 E_Button.Instance.ShowButton();
             
             //Event 02
@@ -248,6 +262,12 @@ namespace Player
             _holyWaterThrowCooldownCurrent -= Time.deltaTime;
         }
 
+        private IEnumerator FillCup()
+        {
+            yield return new WaitForSeconds(2f);
+            _hasFilledCup = true;
+        }
+
         private void ThrowHolyWater()
         {
             var holyWater = Instantiate(holyWaterPrefab, holyWaterThrowPos.transform.position, holyWaterThrowPos.transform.rotation);
@@ -282,19 +302,15 @@ namespace Player
             }
         }
 
-        private IEnumerator WaitForWine()
-        {
-            yield return new WaitForSeconds(1f);
-            _canDrink = true;
-        }
-
         private IEnumerator DrinkWine()
         {
-            //GameObject.Find("ItemTowel").GetComponent<Animator>().SetTrigger("DrinkWine");
-            SoundManager.Instance.PlaySound(audioClip00,transform,0.5f);
-            yield return new WaitForSeconds(2f);
-            _input.invert = false;
-            EventController.instance.StopCurrentEvent();
+            if (_hasFilledCup)
+            {
+                SoundManager.Instance.PlaySound(audioClip00,transform,0.5f);
+                yield return new WaitForSeconds(2f);
+                _input.invert = false;
+                EventController.instance.StopCurrentEvent();
+            }
         }
 
         private IEnumerator StartFlying()
@@ -344,6 +360,13 @@ namespace Player
                 _pickupAvailable = true;
                 if (EventController.instance.GetActiveItem() != Data.PlayerItems.None && !PlayerItemController.instance.hasItem)
                     E_Button.Instance.ShowButton();
+            }
+            
+            //Event 00
+            if (other.CompareTag("Event_00_Wine") && EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed && !_hasFilledCup)
+            {
+                _isInWineRange = true;
+                E_Button.Instance.ShowButton();
             }
             
             //Event 02
@@ -435,6 +458,13 @@ namespace Player
             if (other.CompareTag("Interactable"))
             {
                 _pickupAvailable = false;
+                E_Button.Instance.HideButton();
+            }
+            
+            //Event 00
+            if (other.CompareTag("Event_00_Wine") && EventController.instance.GetActiveEvent() == Data.Events.PlayerPossesed)
+            {
+                _isInWineRange = false;
                 E_Button.Instance.HideButton();
             }
 
