@@ -227,8 +227,9 @@ namespace Player
                 _holyWaterThrowCooldownCurrent = _holyWaterThrowCooldownBase;
                 ThrowHolyWater();
             }
-
-            _holyWaterThrowCooldownCurrent -= Time.deltaTime;
+            
+            if (EventController.instance.GetActiveEvent()==Data.Events.SatanistsAttack && PlayerItemController.instance.hasItem)
+                _holyWaterThrowCooldownCurrent -= Time.deltaTime;
         }
 
         private void ThrowHolyWater()
@@ -258,6 +259,7 @@ namespace Player
             yield return new WaitForSeconds(2f);
             if (_lastPentagram != null)
             {
+                E_Button.Instance.HideButton();
                 Destroy(_lastPentagram);
                 pentagramsCnt--;
                 if(pentagramsCnt == 0)
@@ -381,7 +383,7 @@ namespace Player
             }
             
             // Event 12 
-            if (other.CompareTag("Event_12_Heal"))
+            if (other.CompareTag("Event_12_Heal") && EventController.instance.GetActiveEvent()==Data.Events.FirstAidForDemon)
             {
                 _canHeal = true;
                 E_Button.Instance.ShowButton();
@@ -504,7 +506,8 @@ namespace Player
             if (item != Data.PlayerItems.None)
             {
                 playerItems[(int) item].gameObject.SetActive(true);
-                SoundManager.Instance.PlaySound(audioClip,transform,0.4f);
+                if (!PlayerItemController.instance.hasItem)
+                    SoundManager.Instance.PlaySound(audioClip,transform,0.4f);
             }
         }
 

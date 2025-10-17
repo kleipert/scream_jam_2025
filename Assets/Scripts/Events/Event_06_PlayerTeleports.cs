@@ -10,6 +10,7 @@ namespace Events
         [SerializeField] private GameObject player;
         [SerializeField] private AudioSource audioSource;
         [SerializeField] private StarterAssetsInputs input;
+        [SerializeField] private CharacterController characterController;
         
         public override void StartEvent()
         {
@@ -21,11 +22,12 @@ namespace Events
 
         private IEnumerator WaitWithTeleport()
         {
+            yield return new WaitForSeconds(2f);
             audioSource.Play();
             yield return new WaitForSeconds(2f);
-            input.canMove = false;
+            characterController.enabled = false;
             player.transform.position = playerTeleport.transform.position;
-            input.canMove = true;
+            characterController.enabled = true;
             StopEvent();
         }
 
