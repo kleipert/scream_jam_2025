@@ -84,7 +84,8 @@ namespace Player
             
             _hasBeenHitRecently = true;
         }
-        
-        
+        public void AddGreenVignette() => _effect.ShowGreenVignette(true);
+
+        public void RemoveGreenVignette() => _effect.ShowGreenVignette(false);
     }
 }

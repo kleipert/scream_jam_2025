@@ -152,5 +152,12 @@ namespace Player
             vignette.smoothness.value = defaultSmoothness;
             routine = null;
         }
+
+        public void ShowGreenVignette(bool show)
+        {
+            vignette.intensity.value = show ? peakIntensityCrit : defaultIntensity;
+            vignette.color.value = show ? Color.green : defaultColor;
+            vignette.smoothness.value = show ? smoothness : defaultSmoothness;
+        }
     }
 }

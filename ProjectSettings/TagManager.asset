@@ -20,6 +20,8 @@ TagManager:
   - Event_14_Satanist
   - HolyWaterBottle
   - Event_13_FlickerTV
+  - Event_09_Sink
+  - Event_09_LaserBeam
   layers:
   - Default
   - TransparentFX
