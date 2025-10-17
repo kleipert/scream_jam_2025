@@ -22,6 +22,7 @@ namespace Player
         [Tooltip("Event07")] [SerializeField] private AudioClip audioClip07;
         [Tooltip("Event08")] [SerializeField] private AudioClip audioClip08;
         [Tooltip("Event12")] [SerializeField] private AudioClip audioClip12;
+        [Tooltip("Cough")] [SerializeField] private AudioClip audioCough;
         
         private StarterAssetsInputs _input;
         private bool _pickupAvailable = false;
@@ -33,6 +34,8 @@ namespace Player
         private bool _hasFilledCup = false;
         private bool _hasDrunkWine = false;
         private bool _hasFilledCupStarted = false;
+        private bool _setCough;
+        private bool _playingCough;
         
         // Event 02 Variables
         [SerializeField] private DialogueRunner dialogueRunner;
@@ -158,6 +161,12 @@ namespace Player
                 StartCoroutine(CleanseFog());
                 _fogAvailable  = false;
             }
+
+            if (_setCough && !_playingCough)
+            {
+                _setCough = false;
+                StartCoroutine(Coughing());
+            }
             
             // Event 04
             if (_curseAvaible && _input.interact)
@@ -267,6 +276,14 @@ namespace Player
         {
             yield return new WaitForSeconds(2f);
             _hasFilledCup = true;
+        }
+
+        private IEnumerator Coughing()
+        {
+            _playingCough = true;
+            SoundManager.Instance.PlaySound(audioCough,transform,0.3f);
+            yield return new WaitForSeconds(4f);
+            _playingCough = false;
         }
 
         private void ThrowHolyWater()
@@ -379,11 +396,17 @@ namespace Player
             }
             
             // Event 03 
-            if (other.CompareTag("Event_03_Fog"))
+            if (other.CompareTag("Event_03_Fog") && PlayerItemController.instance.hasItem)
             {
                 _fogAvailable = true;
                 _lastFog = other.gameObject;
                 E_Button.Instance.ShowButton();
+            }
+
+            if (other.CompareTag("Event_03_Fog"))
+            {
+                if (!_playingCough)
+                    StartCoroutine(Coughing());
             }
             
             // Event 04
@@ -479,6 +502,7 @@ namespace Player
             {
                 _fogAvailable = false;
                 _lastFog = null;
+                _setCough = true;
                 E_Button.Instance.HideButton();
             }    
             

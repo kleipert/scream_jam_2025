@@ -7,6 +7,7 @@ namespace Events
     {
         [SerializeField] private GameObject portal;
         [SerializeField] private GameObject circle;
+        [SerializeField] private AudioClip clip;
         
         public override void StartEvent()
         {
@@ -30,6 +31,7 @@ namespace Events
             base.StopEvent();
             portal.SetActive(false);
             circle.SetActive(false);
+            SoundManager.Instance.PlaySound(clip, transform, 0.3f);
         }
     }
 }

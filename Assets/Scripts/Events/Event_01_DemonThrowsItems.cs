@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 using Random = UnityEngine.Random;
 
 namespace Events
@@ -10,6 +11,7 @@ namespace Events
     {
         [SerializeField] private GameObject _player;
         [SerializeField] private List<GameObject> throwableItems;
+        [SerializeField] private DialogueRunner dialogueRunner;
         private bool _readyToThrow = false;
         private float _throwCooldownBase = 2f;
         private float _currentThrowCooldown = 0f;
@@ -58,6 +60,7 @@ namespace Events
 
         public override void StopEvent()
         {
+            dialogueRunner.StartDialogue("After_throwing");
             base.StopEvent();
         }
     }
