@@ -182,7 +182,7 @@ position: -712,-395
 <<Call 11>>
 <<wait 2>>
 <<CloseEnable>>
-Andrew:<i>The crucifix drives out these spawns of Hell!</i>
+Andrew:<i>I must confront the demons face to face with the crucifix</i>
 <<CloseDisable>>
 ===
 
